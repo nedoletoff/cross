@@ -113,6 +113,17 @@ void Matrix::set_char(char value, size_t h, size_t w)
 	std::cout << array[h][w] << std::endl;
 }
 
+size_t Matrix::get_unfilled()
+{
+	size_t count = 0;
+	for (size_t h = 0; h < height; ++h)
+                for (size_t w = 0; w < weight; ++w
+				if (array[h][w] == ' ')
+					++count;
+	return count;
+}
+	
+
 size_t Matrix::get_width()
 {
 	return width;
