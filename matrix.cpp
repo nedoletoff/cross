@@ -122,7 +122,22 @@ void Matrix::set_char(char value, size_t h, size_t w)
 	std::cout << array[h][w] << std::endl;
 }
 
+<<<<<<< HEAD
 int Matrix::get_unfilled_column()
+=======
+size_t Matrix::get_unfilled()
+{
+	size_t count = 0;
+	for (size_t h = 0; h < height; ++h)
+                for (size_t w = 0; w < weight; ++w
+				if (array[h][w] == ' ')
+					++count;
+	return count;
+}
+	
+
+size_t Matrix::get_width()
+>>>>>>> 1a32b768d3462fc4e613fc4da5b409225a1f3aaa
 {
 	int num = -1;
 	bool check = true;
