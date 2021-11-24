@@ -1,4 +1,5 @@
 #include "matrix.hpp"
+#include "exceptions.hpp"
 
 Matrix::Matrix(size_t h, size_t w)
 {
@@ -51,18 +52,18 @@ Matrix& Matrix::operator=(Matrix& a)
 void Matrix::set_cell(size_t h, size_t w, char value)
 {
 	if (h >= height)
-		throw 1;
+        throw Exception("h out of range");
 	if (w >= width)
-		throw 2;
+		throw Exception("w out of range");
 	data[h][w] = value;
 }
 
 char Matrix::get_cell(size_t h, size_t w)
 {
 	if (h >= height)
-		throw 1;
+        throw Exception("h out of range");
 	if (w >= width)
-		throw 2;
+		throw Exception("w out of range");
 	return data[h][w];
 }
 
