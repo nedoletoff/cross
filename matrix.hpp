@@ -1,26 +1,31 @@
 #pragma once
+#include <iostream>
 
 class Matrix
 {
 	private:
 		size_t height;
 		size_t width;
-		char** array;
+		char** data;
 	public:
-		Matrix(size_t, size_t);			//height width
-		Matrix(Matrix&);
-		Matrix& operator=(Matrix&);
+		Matrix(size_t h, size_t w);
 		~Matrix();
-		void set_null();			//fill the matrix with ' ' 
-		void mirror(); 				//height -> width; width -> height; array[l][w] -> array[w][l]
-		void print();
-		char get_char(size_t, size_t);		//height width
-		void set_char(char, size_t, size_t);	//height width
-		int get_unfilled_column();
-		int get_unfilled_string();
-		size_t update_height();			//delete unfilled string
-		size_t update_width();			//delete unfilled column
-		size_t get_width();
+		Matrix(Matrix& a);
+		Matrix& operator=(Matrix& a);
+		void set_cell(size_t h, size_t w, char value);
+		char get_cell(size_t h, size_t w);
 		size_t get_height();
+		size_t get_width();
+		size_t get_unfilled(char check);
+		void change_unfilled(char check, char value);
+	friend std::ostream& operator<<(std::ostream& os, Matrix& value)
+	{
+		for (size_t i = 0; i < value.height; i++)
+		{
+			for (size_t j = 0; j < value.width; j++)
+				os << value.data[i][j];
+			os << std::endl;
+		}
+		return os;
+	}
 };
-

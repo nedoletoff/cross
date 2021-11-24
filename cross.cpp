@@ -1,4 +1,4 @@
-#include "words.hpp"
+#include "cross.hpp"
 #include <list>
 
 Words::Words(std::string filename)

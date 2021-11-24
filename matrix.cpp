@@ -1,31 +1,31 @@
 #include "matrix.hpp"
-#include <iosream>
 
 Matrix::Matrix(size_t h, size_t w)
 {
-	if (h < 0)
-		throw 3;
-	if (w < 0) 
-		throw 4;
-
+	height = h; 
 	width = w;
-	height = h;
-	array = new char*[height];
-	for (size_t i = 0; i < height; ++i)
-		array[i] = new char[width];
-	set_null();
+	data = new char*[h];
+	for (size_t i = 0; i < h; i++)
+		data[i] = new char[w];
 }
 
-Matrix::Matrix(Matrix& a);
+Matrix::~Matrix()
+{
+	for (size_t i = 0; i < height; i++)
+		delete[] data[i];
+	delete[] data;
+}
+
+Matrix::Matrix(Matrix& a)
 {
 	height = a.height;
 	width = a.width;
-	array = new char*[height];
-	for (size_t i = 0; i < height; ++i)
-		array[i] = new char[width];
-	for (size_t h = 0; h < height; ++h)
-		for (size_t w = 0; w < width; ++w)
-			array[h][w] = a.array[h][w];
+	data = new char*[height];
+	for (size_t i = 0; i < height; i++)
+		data[i] = new char[width];
+	for (size_t i = 0; i < height; i++)
+		for (size_t j = 0; j < width; j++)
+			data[i][j] = a.data[i][j];
 }
 
 Matrix& Matrix::operator=(Matrix& a)
@@ -33,201 +33,37 @@ Matrix& Matrix::operator=(Matrix& a)
 	if (&a == this)
 		return *this;
 
-	for (size_t i = 0; i < height; ++i)
-		delete array[i];
-	if (array)
-		delete array;
+	for (size_t i = 0; i < height; i++)
+		delete[] data[i];
+	delete[] data;
 
 	height = a.height;
 	width = a.width;
-	array = new char*[height];
-	for (size_t i = 0; i < height; ++i)
-		array[i] = new char[width];
-	for (size_t h = 0; h < height; ++h)
-		for (size_t w = 0; w < width; ++w)
-			array[h][w] = a.array[h][w];
+	data = new char*[height];
+	for (size_t i = 0; i < height; i++)
+		data[i] = new char[width];
+	for (size_t i = 0; i < height; i++)
+		for (size_t j = 0; j < width; j++)
+			data[i][j] = a.data[i][j];
 	return *this;
 }
 
-Matrix::~Matrix()
-{
-	for (size_t i = 0; i < height; ++i)
-		delete array[i];
-	delete array;
-}
-
-Matrix::set_null()
-{
-	for (size_t h = 0; h < height; ++h)
-		for (size_t w = 0; w < width; ++w)
-			array[h][w] = ' ';
-}
-
-void Matrix::miror()
-{
-	Matrix a = this;
-
-	for (size_t i = 0; i < height; ++i)
-		delete array[i];
-	delete array;
-
-	height = a.width;
-	width = a.height;
-	array = new char*[height];
-	for (size_t i = 0; i < height; ++i)
-		array[i] = new char[width];
-
-	for (size_t h = 0; h < height; ++h)
-		for (size_t w = 0; w < weight; ++w)
-			array[h][w] = a.array[w][h];
-}
-
-void Matrix::print()
-{
-	for (size_t h = 0; h < height; ++h)
-	{
-		for (size_t  w = 0; w < width; ++w)
-			std::cout << array[h][w] << "  ";
-		std::cout << std::endl;
-	}
-}
-
-char Matrix::get_char(size_t h, size_t w)
+void Matrix::set_cell(size_t h, size_t w, char value)
 {
 	if (h >= height)
 		throw 1;
-	if (w >= Width)
+	if (w >= width)
 		throw 2;
-	if (h < 0)
-		throw 3;
-	if (w < 0) 
-		throw 4;
-
-	std::cout << int(array[h][w]) << std::endl;
-	return array[h][w];
+	data[h][w] = value;
 }
 
-void Matrix::set_char(char value, size_t h, size_t w)
+char Matrix::get_cell(size_t h, size_t w)
 {
 	if (h >= height)
 		throw 1;
-	if (w >= Width)
+	if (w >= width)
 		throw 2;
-	if (h < 0)
-		throw 3;
-	if (w < 0) 
-		throw 4;
-
-	array[h][w] = value;
-	std::cout << array[h][w] << std::endl;
-}
-
-<<<<<<< HEAD
-int Matrix::get_unfilled_column()
-=======
-size_t Matrix::get_unfilled()
-{
-	size_t count = 0;
-	for (size_t h = 0; h < height; ++h)
-                for (size_t w = 0; w < weight; ++w
-				if (array[h][w] == ' ')
-					++count;
-	return count;
-}
-	
-
-size_t Matrix::get_width()
->>>>>>> 1a32b768d3462fc4e613fc4da5b409225a1f3aaa
-{
-	int num = -1;
-	bool check = true;
-
-	for (size_t w = 0; w < width; ++w && !check)
-	{
-		check = true;
-		num = -1;
-		for (size_t h = 0; h < height; ++h)
-		{
-			if (array[h][w] > ' ')
-			{
-				check = false;
-				break;
-			}
-			num = h;
-		}
-	}
-	return num;
-}
-
-int Matrix::getPunfilled_string()
-{
-	int num = -1;
-	bool check = true;
-
-	for (size_t h = 0; h < height; ++w && !check)
-	{
-		check = true;
-		num = -1;
-		for (size_t w = 0; w < width; ++w)
-		{
-			if (array[h][w] > ' ')
-			{
-				check = false;
-				break;
-			}
-			num = w;
-		}
-	}
-	return num;
-}
-
-size_t Matrix::update_heihgt()
-{
-	int num = get_unifilled_string();
-	if (num > 0)
-	{
-		Matrix a = this;
-		for (size_t i = 0; i < height; ++i)
-			delete array[i];
-		delete array;
-
-		array = new char*[--height];
-		for (size_t i = 0; i < height; ++i)
-			array[i] = new char[width];
-		for (size_t h = 0; h < height; ++h)
-			if (h != num)
-				for (size_t w = 0; w < width; ++w)
-					array = a.array[h][w];
-	}
-	return height;
-}
-
-size_t Matrix::update_width()
-{
-	int num = get_unifilled_column();
-	if (num > 0)
-	{
-		Matrix a = this;
-		for (size_t i = 0; i < height; ++i)
-			delete array[i];
-		delete array;
-		
-		--width;
-		array = new char*[height];
-		for (size_t i = 0; i < height; ++i)
-			array[i] = new char[width];
-		for (size_t h = 0; h < height; ++h)
-			for (size_t w = 0; w < width; ++w)
-				if (w != num)
-					array = a.array[h][w];
-	}
-	return width;
-}
-
-
-size_t Matrix::get_width()
-{
-	return width;
+	return data[h][w];
 }
 
 size_t Matrix::get_height()
@@ -235,3 +71,25 @@ size_t Matrix::get_height()
 	return height;
 }
 
+size_t Matrix::get_width()
+{
+	return width;
+}
+
+size_t Matrix::get_unfilled(char check)
+{
+	size_t count = 0;
+	for (size_t i = 0; i < height; i++)
+		for (size_t j = 0; j < width; j++)
+			if (data[i][j] == check)
+				count++;
+	return count;
+}
+
+void Matrix::change_unfilled(char check, char value)
+{
+	for (size_t i = 0; i < height; i++)
+		for (size_t j = 0; j < width; j++)
+			if (data[i][j] == check)
+				data[i][j] = value;
+}
