@@ -94,3 +94,37 @@ void Matrix::change_unfilled(char check, char value)
 			if (data[i][j] == check)
 				data[i][j] = value;
 }
+
+/*
+size_t Matrix::are_free(size_t h_start, size_t h_finish, size_t w_start, size_t w_finish)
+{
+    if (h_start >= height)
+        throw Exception("h_start out of range");
+    if (h_finish >= height)
+        throw Exception("h_finish out of range");
+    if (w_start >= height)
+        throw Exception("w_start out of range");
+    if (w_finish >= height)
+        throw Exception("w_finish out of range");
+
+    if (h_start < h_finish)
+        throw Exception("h_start < h_finish");
+    if (w_start < w_finish)
+        throw Exception("w_start < w_finish");
+
+    if (h_start == h_finish && w_start != w_finish)
+        return are_free_v(w_start, w_finish, h_start);
+
+    if (w_start == w_finish && h_start != h_finish)
+        return are_free_g(h_start, h_finish, w_start);
+
+    else
+        throw Exception("Wrong arguments");
+}
+
+size_t Matrix::are_free_g(size_t h_start, size_t h_finish, size_t w)
+{
+    if (h_start != 0)
+
+}
+*/

@@ -1,6 +1,6 @@
-#include "words.hpp"
 #include "exceptions.hpp"
 #include <list>
+#include "words.hpp"
 
 Words::Words(std::string filename)
 {
@@ -16,10 +16,10 @@ Words::Words(std::string filename)
 	words.push_back(temp);
 	auto it = words.begin();
 	for (file >> temp; !file.eof(); file >> temp)
-        if (temp.size() >= 3)
+        if (temp.size() >= 3)   //можно добавить какойт-то список невошедших слов
         {
 		for (it = words.begin(); it  !=  words.end() || temp.size() < it->size(); it++)
-			if (temp == *it)
+			if (temp == *it)     //и сюда тоже
 			{
 				words.erase(it);
 				break;
@@ -80,3 +80,9 @@ size_t Words::get_words_used_numbers()
 {
 	return used_numbers;
 }
+
+bool Words::are_all_words_used()
+{
+    return (used_numbers == numbers);
+}
+
