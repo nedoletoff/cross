@@ -24,7 +24,7 @@ Words::Words(std::string filename)
 						}
 					words.insert(it, temp);
         }
-	std::for_each(words.begin(); words.end(); add_word);
+	std::for_each(words.begin(), words.end(), [this](std::string a) { this->add_word(a); });
 }
 
 std::string Words::get_word(size_t n)

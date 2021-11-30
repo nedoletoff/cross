@@ -3,7 +3,7 @@
 Matrix::Matrix(size_t h, size_t w)
 {
 	height = h;
-	width = w
+	width = w;
 	data = new char*[h];
 	for (size_t i = 0; i < h; i++)
 		data[i] = new char[w];
@@ -112,13 +112,13 @@ void Matrix::increase_size(size_t h, size_t w)
 
 	for (size_t i = 0; i < h; i++)
 		for (size_t j = 0; j < w; j++)
-			data[i][j] = temp[i][j];
+			data[i][j] = temp.data[i][j];
 }
 
-void Matrix::shrink_to_fit(char check);
+void Matrix::shrink_to_fit(char check)
 {
 	size_t h;
-	sise_t w;
+	size_t w;
 	bool temp;
 
 	for (size_t i =	0; i <	height; i++)
