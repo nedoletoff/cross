@@ -1,10 +1,9 @@
 #include "matrix.hpp"
-#include "exceptions.hpp"
 
 Matrix::Matrix(size_t h, size_t w)
 {
-	height = h; 
-	width = w;
+	height = h;
+	width = w
 	data = new char*[h];
 	for (size_t i = 0; i < h; i++)
 		data[i] = new char[w];
@@ -95,36 +94,74 @@ void Matrix::change_unfilled(char check, char value)
 				data[i][j] = value;
 }
 
-/*
-size_t Matrix::are_free(size_t h_start, size_t h_finish, size_t w_start, size_t w_finish)
+void Matrix::increase_size(size_t h, size_t w)
 {
-    if (h_start >= height)
-        throw Exception("h_start out of range");
-    if (h_finish >= height)
-        throw Exception("h_finish out of range");
-    if (w_start >= height)
-        throw Exception("w_start out of range");
-    if (w_finish >= height)
-        throw Exception("w_finish out of range");
+	if (h <= height)
+		throw Exception("h <= height");
+	if (w <= width)
+		throw Exception("w <= width");
 
-    if (h_start < h_finish)
-        throw Exception("h_start < h_finish");
-    if (w_start < w_finish)
-        throw Exception("w_start < w_finish");
+	Matrix temp(*this);
+	for (size_t i = 0; i < height; i++)
+		delete[] data[i];
+	delete[] data;
 
-    if (h_start == h_finish && w_start != w_finish)
-        return are_free_v(w_start, w_finish, h_start);
+	data = new char*[h];
+	for (size_t i = 0; i < h; i++)
+		data[i] = new char[w];
 
-    if (w_start == w_finish && h_start != h_finish)
-        return are_free_g(h_start, h_finish, w_start);
-
-    else
-        throw Exception("Wrong arguments");
+	for (size_t i = 0; i < h; i++)
+		for (size_t j = 0; j < w; j++)
+			data[i][j] = temp[i][j];
 }
 
-size_t Matrix::are_free_g(size_t h_start, size_t h_finish, size_t w)
+void Matrix::shrink_to_fit(char check);
 {
-    if (h_start != 0)
+	size_t h;
+	sise_t w;
+	bool temp;
 
+	for (size_t i =	0; i <	height; i++)
+	{
+		temp  = true;
+		for (size_t j = 0; j < width; j++)
+			if (data[i][j] != check)
+			{
+				temp = false;
+				break;
+			}
+		if (temp)
+		{
+			h = i;
+			break;
+		}
+	}
+	for (size_t i =	0; i <	width; i++)
+	{
+		temp = true;
+		for (size_t j = 0; j < height; j++)
+			if (data[j][i] != check)
+			{
+				temp = false;
+				break;
+			}
+		if (temp)
+		{
+			w = i;
+			break;
+		}
+	}
+
+	Matrix a(*this);
+		for (size_t i = 0; i < height; i++)
+		delete[] data[i];
+	delete[] data;
+
+	height = h; width = w;
+	data = new char*[h];
+	for (size_t i = 0; i < h; i++)
+		data[i] = new char[w];
+	for (size_t i = 0; i < h; i++)
+		for (size_t j = 0; j < w; j++)
+			data[i][j] = a.data[i][j];
 }
-*/

@@ -4,6 +4,9 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <list>
+#include <algorithm>
+#include "exceptions.hpp"
 
 struct Pair
 {
@@ -31,7 +34,7 @@ class Words
 		void add_word(std::string value);
 		size_t get_words_numbers();
 		size_t get_words_used_numbers();
-        bool are_all_words_used();
+    bool are_all_words_used();
 	friend std::ostream& operator<<(std::ostream& os, Words& value)
 	{
 		for (auto e : value.words_and_status)

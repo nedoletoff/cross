@@ -1,5 +1,3 @@
-#include "exceptions.hpp"
-#include <list>
 #include "words.hpp"
 
 Words::Words(std::string filename)
@@ -18,21 +16,15 @@ Words::Words(std::string filename)
 	for (file >> temp; !file.eof(); file >> temp)
         if (temp.size() >= 3)   //можно добавить какойт-то список невошедших слов
         {
-		for (it = words.begin(); it  !=  words.end() || temp.size() < it->size(); it++)
-			if (temp == *it)     //и сюда тоже
-			{
-				words.erase(it);
-				break;
-			}
-		words.insert(it, temp);
+					for (it = words.begin(); it  !=  words.end() || temp.size() < it->size(); it++)
+						if (temp == *it)     //и сюда тоже
+						{
+							words.erase(it);
+							break;
+						}
+					words.insert(it, temp);
         }
-
-	for (auto e : words)	
-	{
-		words_and_status.push_back({e, false});
-		numbers++;
-	}
-
+	std::for_each(words.begin(); words.end(); add_word);
 }
 
 std::string Words::get_word(size_t n)
@@ -85,4 +77,3 @@ bool Words::are_all_words_used()
 {
     return (used_numbers == numbers);
 }
-
