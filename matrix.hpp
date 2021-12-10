@@ -26,7 +26,7 @@ class Matrix
 	friend std::ostream& operator<<(std::ostream& os, Matrix& value)
 	{
 		for (size_t i = 0; i < value.height; i++)
-		{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
+		{
 			for (size_t j = 0; j < value.width; j++)
 				os << value.data[i][j];
 			os << std::endl;

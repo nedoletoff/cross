@@ -5,20 +5,7 @@
 #include "words.hpp"
 #include "exceptions.hpp"
 
-struct Coordinates
-{
-  size_t h_begin;
-  size_t h_end;
-  size_t w_begin;
-  size_t w_end;
 
-  friend &ostream operator>>(ostream& os, Coordinates& value)
-  {
-    os << "begin: " << h_begin << "   " << w_begin << std::endl;
-    os << "end: " << h_end << "   " << w_end;
-    return os;
-  }
-
-};
-
-bool check_space(Coordinates& space, Matrix& matrix);
+bool add_word(Words& words, size_t n, Matrix& matrix, size_t h, size_t w);
+bool delete_word_g(Words& words, size_t n, Matrix& matrix, size_t h, size_t w);
+bool delete_word_v(Words& words, size_t n, Matrix& matrix, size_t h, size_t w);
