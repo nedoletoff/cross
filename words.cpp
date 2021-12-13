@@ -14,16 +14,16 @@ Words::Words(std::string filename)
 	words.push_back(temp);
 	auto it = words.begin();
 	for (file >> temp; !file.eof(); file >> temp)
-        if (temp.size() >= 3)   //можно добавить какойт-то список невошедших слов
-        {
-					for (it = words.begin(); it  !=  words.end() || temp.size() < it->size(); it++)
-						if (temp == *it)     //и сюда тоже
-						{
-							words.erase(it);
-							break;
-						}
-					words.insert(it, temp);
-        }
+        	if (temp.size() >= 3)   //можно добавить какойт-то список невошедших слов
+        	{
+			for (it = words.begin(); it  !=  words.end() && *it <= temp; it++)
+				if (temp == *it)     //и сюда тоже
+				{
+					words.erase(it--);
+					break;
+				}
+			words.insert(it, temp);
+       		}
 	std::for_each(words.begin(), words.end(), [this](std::string a) { this->add_word(a); });
 }
 
@@ -59,7 +59,7 @@ void Words::change_word_status(size_t n, bool value)
 }
 
 void Words::add_word(std::string value)
-{
+{	
 	words_and_status.push_back({value, false});
 	numbers++;
 }

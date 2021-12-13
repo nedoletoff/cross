@@ -112,13 +112,19 @@ void Matrix::increase_size(size_t h, size_t w)
 
 	for (size_t i = 0; i < h; i++)
 		for (size_t j = 0; j < w; j++)
+			data[i][j] = '\0';
+
+	for (size_t i = 0; i < height; i++)
+		for (size_t j = 0; j < width; j++)
 			data[i][j] = temp.data[i][j];
+	height = h; width = w;
+
 }
 
 void Matrix::shrink_to_fit(char check)
 {
-	size_t h;
-	size_t w;
+	size_t h = height;
+	size_t w = width;
 	bool temp;
 
 	for (size_t i =	0; i <	height; i++)
@@ -158,10 +164,10 @@ void Matrix::shrink_to_fit(char check)
 	delete[] data;
 
 	height = h; width = w;
-	data = new char*[h];
-	for (size_t i = 0; i < h; i++)
-		data[i] = new char[w];
-	for (size_t i = 0; i < h; i++)
-		for (size_t j = 0; j < w; j++)
+	data = new char*[height];
+	for (size_t i = 0; i < height; i++)
+		data[i] = new char[width];
+	for (size_t i = 0; i < height; i++)
+		for (size_t j = 0; j < width; j++)
 			data[i][j] = a.data[i][j];
 }

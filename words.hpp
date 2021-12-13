@@ -37,7 +37,7 @@ class Words
     bool are_all_words_used();
 	friend std::ostream& operator<<(std::ostream& os, Words& value)
 	{
-		for (auto e : value.words_and_status)
+		for (auto& e : value.words_and_status)
 			os << e << std::endl;
 		return os;
 	}
