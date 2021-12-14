@@ -35,6 +35,7 @@ class Matrix
 		void change_unfilled(char check, char value);
 		void increase_size(size_t h, size_t w);
 		void shrink_to_fit(char check);
+		double get_coef();
 	friend std::ostream& operator<<(std::ostream& os, Matrix& value)
 	{
 		for (size_t i = 0; i < value.height; i++)
@@ -46,7 +47,7 @@ class Matrix
 		for (size_t i = 0; i < value.height; i++)
 		{
 			for (size_t j = 0; j < value.width; j++)
-				std::cout << value.status[i][j] << ' ';
+				std::cout << value.status[i][j] << '\t';
 			std::cout << std::endl;
 		}
 		return os;

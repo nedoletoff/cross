@@ -277,3 +277,15 @@ void Matrix::shrink_to_fit(char check)
 			data[i][j] = a.data[i][j];
 		}
 }
+
+double Matrix::get_coef()
+{
+	double count = 0.0;
+	for (size_t  i = 0; i < height; i++)
+		for (size_t j = 0; j < width; j++)
+			if (status[i][j] % (used * used) == 0)
+				count++;
+	if (get_unfilled() == height * width)
+		return -1;
+	return count / (height * width);
+}

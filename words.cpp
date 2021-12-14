@@ -61,6 +61,7 @@ void Words::change_word_status(size_t n, bool value)
 void Words::add_word(std::string value)
 {	
 	words_and_status.push_back({value, false});
+	coordinates.push_back({0, 0, 0});
 	numbers++;
 }
 size_t Words::get_words_numbers()
@@ -76,4 +77,27 @@ size_t Words::get_words_used_numbers()
 bool Words::are_all_words_used()
 {
     return (used_numbers == numbers);
+
+}
+Coordinates Words::get_coordinates(size_t n)
+{
+	if (n >= numbers)
+		throw Exception("n out of range");
+	return coordinates[n];
+}
+
+void Words::set_coordinates(size_t n, int o, size_t h, size_t w)
+{
+	if (n >= numbers)
+		throw Exception("n out of range");
+	coordinates[n].orientation = o;
+	coordinates[n].h = h;
+	coordinates[n].w = w;
+}
+
+void Words::set_coordinates(size_t n, int o)
+{
+	if (n >= numbers)
+		throw Exception("n out of range");
+	coordinates[n].orientation = o;
 }

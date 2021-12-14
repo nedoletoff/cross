@@ -20,10 +20,18 @@ struct Pair
 	}
 };
 
+struct Coordinates
+{
+	int orientation;
+	size_t h;
+	size_t w;
+};
+
 class Words
 {
 	private:
-		std::vector<Pair> words_and_status;
+		std::vector<Pair> words_and_status; 	//заменить использование статуса на использование ориентации
+		std::vector<Coordinates> coordinates;
 		size_t numbers;
 		size_t used_numbers;
 	public:
@@ -34,6 +42,9 @@ class Words
 		void add_word(std::string value);
 		size_t get_words_numbers();
 		size_t get_words_used_numbers();
+		Coordinates get_coordinates(size_t n);
+		void set_coordinates(size_t n, int o, size_t h, size_t w);
+		void set_coordinates(size_t n, int o);
     bool are_all_words_used();
 	friend std::ostream& operator<<(std::ostream& os, Words& value)
 	{
