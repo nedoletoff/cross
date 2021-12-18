@@ -25,6 +25,31 @@ struct Coordinates
 	int orientation;
 	size_t h;
 	size_t w;
+
+	friend std::ostream& operator<<(std::ostream& os, Coordinates& value)
+	{
+		os << "orientation - ";
+		if (value.orientation > 0)
+			os << "vertical\t";
+		else if (value.orientation < 0)
+			os << "gorizontal\t";
+		else 
+			os << "not\t";
+		os << value.h << " - " << value.w;
+		return os;
+	}
+	friend std::ostream& operator<<(std::ostream& os, Coordinates value)
+	{
+		os << "orientation - ";
+		if (value.orientation > 0)
+			os << "vertical\t";
+		else if (value.orientation < 0)
+			os << "gorizontal\t";
+		else 
+			os << "not\t";
+		os << value.h << " - " << value.w;
+		return os;
+	}
 };
 
 class Words

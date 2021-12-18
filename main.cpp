@@ -8,7 +8,7 @@
 
 int main() 
 {
-		Matrix matrix(7, 7);
+		Matrix matrix(15, 15);
 	try
 	{
 		Words words("inputfile.txt");

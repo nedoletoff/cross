@@ -4,19 +4,22 @@
 
 bool add_word(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 {
-	if (words.get_word_status(n))
-		return false;
 	std::string value = words.get_word(n) + ' ';
 	size_t word_size = value.size();
+//	char a;
+//	std::cout << "add_word " << n << " "<< value;
+//	std::cin >> a;
 	bool check = true;
+
 	if (w + word_size <= matrix.get_width())
 	{
 		try 
 		{
-		if (matrix.get_cell_status(h, w - 1) % used == 0)
-			check = false;
+			if (matrix.get_cell_status(h, w - 1) % used == 0)
+				check = false;
 		}
 		catch (Exception e) {}
+
 		try 
 		{
 			if (matrix.get_cell_status(h, w + word_size + 1) % used == 0)
@@ -109,6 +112,9 @@ bool add_word(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 void delete_word_g(std::string value, Matrix& matrix, size_t h, size_t w)
 {
 	size_t word_size = value.size();
+//	char a;
+//	std::cout << "delete_wordg " << value;
+//	std::cin >> a;
 	if (w + word_size> matrix.get_height())
 		throw Exception("w + word_size");
 
@@ -117,7 +123,8 @@ void delete_word_g(std::string value, Matrix& matrix, size_t h, size_t w)
 			throw Exception("words is not in place" );
 	for (size_t i = 0; i < word_size; i++)
 	{
-		matrix.set_cell(h, w + i, '\0');
+		if (matrix.get_cell_status(h, w + i) / (::used*::used) == 0)
+			matrix.set_cell(h, w + i, '\0');
 		matrix.divide_cell_status(h, w + i, ::used);
 		try
 		{
@@ -135,15 +142,18 @@ void delete_word_g(std::string value, Matrix& matrix, size_t h, size_t w)
 void delete_word_v(std::string value, Matrix& matrix, size_t h, size_t w)
 {
 	size_t word_size = value.size();
+
 	if (h + word_size > matrix.get_height())
 		throw Exception("h + word_size");
+
 	for (size_t i = 0; i < word_size; i++)
 		if (matrix.get_cell(h + i, w) && matrix.get_cell(h + i, w)!= value[i])
 			throw Exception("words is not in place");
 
 	for (size_t i = 0; i < word_size; i++)
 	{
-		matrix.set_cell(h + i, w, '\0');
+		if (matrix.get_cell_status(h + i, w) / (::used*::used) == 0)
+			matrix.set_cell(h + i, w, '\0');
 		matrix.divide_cell_status(h + i, w, ::used);
 		try
 		{
@@ -162,6 +172,7 @@ bool delete_word(Words& words, size_t n, Matrix& matrix)
 {
 	if (!words.get_word_status(n))
 		return false;
+
 	std::string value = words.get_word(n) + ' ';
 	Coordinates c = words.get_coordinates(n);
 	if (c.orientation > 0)
@@ -176,20 +187,28 @@ bool delete_word(Words& words, size_t n, Matrix& matrix)
 
 bool add_word(Words& words, size_t n, Matrix& matrix)
 {
-	double start_coef = matrix.get_coef();
+	double m_coef = matrix.get_coef();
+	bool check = false;
+	size_t h, w;
+
+	if (words.get_word_status(n))
+		return false;
+
 	for (size_t i = 0; i < matrix.get_height(); i++)
 		for (size_t j = 0; j < matrix.get_width(); j++)
-		{
-			if (add_word(words, n, matrix, i, j) && start_coef <
-			matrix.get_coef())
+			if (add_word(words, n, matrix, i, j))
 			{
-				std::cout << start_coef << " < " << matrix.get_coef() << std::endl;
-
-				return true;
-			}
-			else
+				if (m_coef < matrix.get_coef())
+				{
+//					std::cout << delete_word(words, n, matrix) << add_word(words, n, matrix, i, j) << "work?" <<std::endl;
+					check = true;
+					h = i; w = j;
+					m_coef = matrix.get_coef();
+				}
 				delete_word(words, n, matrix);
-		}
+			}
+	if (check)
+		return (add_word(words, n, matrix, h, w));
 	return false;
 }
 
@@ -198,18 +217,21 @@ void cross(Words& words, Matrix& matrix, Matrix& res, std::list<size_t>& l)
 	for (size_t k = 0; k < words.get_words_numbers(); k++)
 		if (add_word(words, k, matrix))
 		{
-			if (res.get_coef() <= matrix.get_coef())
+           		 if (l.size() > words.get_words_numbers())
+                		throw Exception("what");
+		 	 if (matrix.get_coef() > res.get_coef())
+			{
+//				std::cout << res.get_coef() << " - " << matrix.get_coef() << std::endl;
 				res = matrix;
+			}
 			l.push_back(k);
-            if (l.size() > words.get_words_numbers())
-                throw Exception("what");
 			cross(words, matrix, res, l);
-			delete_word(words, l.back(), matrix);
-			l.pop_back();
 		}
-//	for (auto& e : l)
-//		std::cout << e << '\t';
-//	std::cout << std::endl;
+//	std::cout << matrix.get_coef() << " get_coef\n";
+
+	delete_word(words, l.back(), matrix);
+	if (l.size())
+		l.pop_back();
 }
 
 void crisscross(Words& words, Matrix& matrix)
@@ -218,7 +240,7 @@ void crisscross(Words& words, Matrix& matrix)
 	std::list<size_t> l;
 	cross(words, matrix, res, l);
 	matrix = res;
-
+	std::cout << res << std::endl;
 }
 
 
