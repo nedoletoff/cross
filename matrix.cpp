@@ -8,7 +8,7 @@ Matrix::Matrix(size_t h, size_t w)
 	status = new int*[h];
 	for (size_t i = 0; i < h; i++)
 	{
-		data[i] = new char[w];
+		data[i] = new char[w]; 
 		status[i] = new int[w];
 	}
 	for (size_t i = 0; i < height; i++)
@@ -288,4 +288,11 @@ double Matrix::get_coef()
 	if (get_unfilled() == height * width)
 		return -1;
 	return count / (height * width);
+}
+
+bool Matrix::legal(size_t h, size_t w)
+{
+	if ( h < height && w < width)
+		return true;
+	return false;
 }

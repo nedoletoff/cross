@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 
-class Exception
+class Exception    ///Класс исключений
 {
     private:
         std::string val;

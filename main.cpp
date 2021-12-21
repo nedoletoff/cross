@@ -5,25 +5,27 @@
 
 #include <fstream>
 #include <iostream>
+#include <string>
 
 int main() 
 {
 		Matrix matrix(15, 15);
+		std::string input, output;
+//		std::cout << "Input file: ";
+//		std::cin >> input;
+//		std::cout << "Output file: ";
+//		std::cin >> output;
 	try
 	{
-		Words words("inputfile.txt");
+		Words words("input.txt");
 		crisscross(words, matrix);
 		std::ofstream file("output.txt");
 		std::cout << matrix.get_coef() << std::endl;
-		std::cout << matrix.get_unfilled() << std::endl;
-		matrix.shrink_to_fit('\0');
-		matrix.change_unfilled('\0', ' ');
 		file << matrix;
 	}
 	catch (Exception e)
 	{
 		std::cout << e << std::endl;
-		std::cout << matrix << std::endl;
 	}
 	
 	return 0;

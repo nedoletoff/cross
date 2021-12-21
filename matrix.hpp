@@ -10,7 +10,7 @@ const int vertical(3);
 const int used(5);
 
 
-class Matrix
+class Matrix	///Класс для графического вывода
 {
 	private:
 		size_t height;
@@ -19,23 +19,40 @@ class Matrix
 		int** status;
 	public:
 		Matrix(size_t h, size_t w);
-		~Matrix();
+		~Matrix();	
 		Matrix(Matrix& a);
 		Matrix& operator=(Matrix& a);
-		void set_cell(size_t h, size_t w, char value);
-		void set_cell_status(size_t h, size_t w, int value);
-		void multiply_cell_status(size_t h, size_t w, int value);
-		void divide_cell_status(size_t h, size_t w, int value);
+		///Метод установки значения клетки
+		void set_cell(size_t h, size_t w, char value);	
+		///Метод извлечения значения клетки
+		void set_cell_status(size_t h, size_t w, int value);	
+		///Метод умножения значения клетки статуса
+		void multiply_cell_status(size_t h, size_t w, int value);	
+		///Метод деления значения клетки статуса
+		void divide_cell_status(size_t h, size_t w, int value);	
+		///Метод установки значения клетки
 		char get_cell(size_t h, size_t w);
-		int get_cell_status(size_t h, size_t w);
-		size_t get_height();
-		size_t get_width();
-		size_t get_unfilled(char check);
-		size_t get_unfilled();
+		///Метод возврата значения статуса клетки	
+		int get_cell_status(size_t h, size_t w);	
+		///Метод возврата высоты матрицы
+		size_t get_height();	
+		///Метод возврата ширины матрицы
+		size_t get_width();	
+		///Метод возврата незаполненных клеток по значению
+		size_t get_unfilled(char check);	
+		///Метод возврата незаполненных клеток по статусу
+		size_t get_unfilled();	
+		///Метод изменения значения  незаполненных клеток 
+		/// \details принимает значение для незаполенной клетки и значение замены этой клетки
 		void change_unfilled(char check, char value);
+		///Метод увеличения размера	
 		void increase_size(size_t h, size_t w);
-		void shrink_to_fit(char check);
-		double get_coef();
+		///Метод приведения матрицы к оптимальному размеру
+		void shrink_to_fit(char check);	
+		///Метод возврата коэфицента оптимальности матрицы
+		double get_coef();	
+		///Метод проверки возможности использования клетки
+		bool legal(size_t h, size_t w);	
 	friend std::ostream& operator<<(std::ostream& os, Matrix& value)
 	{
 		for (size_t i = 0; i < value.height; i++)
@@ -43,12 +60,6 @@ class Matrix
 			for (size_t j = 0; j < value.width; j++)
 				os << value.data[i][j];
 			os << std::endl;
-		}
-		for (size_t i = 0; i < value.height; i++)
-		{
-			for (size_t j = 0; j < value.width; j++)
-				std::cout << value.status[i][j] << '\t';
-			std::cout << std::endl;
 		}
 		return os;
 	}
