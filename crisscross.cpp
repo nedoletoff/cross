@@ -2,6 +2,12 @@
 #include <iostream>
 
 ///Функция вставки слов по координатам горизонтально
+/// \param words Список слов
+/// \param n Номер слова
+/// \param matrix Матрица содержащая сетку кроссворда
+/// \param h Координата высоты
+/// \param w Координата широты
+ /// \return Добавилось ли слово
 bool add_word_g(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)	
 {
 	std::string value = words.get_word(n);
@@ -45,6 +51,12 @@ bool add_word_g(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 }
 
 ///Функция вставки слов по координатам вертикально
+/// \param words Список слов
+/// \param n Номер слова
+/// \param matrix Матрица содержащая сетку кроссворда
+/// \param h Координата высоты
+/// \param w Координата широты
+ /// \return Добавилось ли слово
 bool add_word_v(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)	
 {
 	std::string value = words.get_word(n);
@@ -89,6 +101,12 @@ bool add_word_v(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 }
 
 ///Функция вставки слов по координатам
+/// \param words Список слов
+/// \param n Номер слова
+/// \param matrix Матрица содержащая сетку кроссворда
+/// \param h Координата высоты
+/// \param w Координата широты
+ /// \return Добавилось ли слово
 bool add_word(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)	
 {
 	if (add_word_g(words, n, matrix, h, w))
@@ -97,6 +115,10 @@ bool add_word(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 }
 
 ///Функция удаления горизонтальных слов
+/// \param value Слово, подлежащее удалению
+/// \param matrix Матрица содержащая сетку кроссворда
+/// \param h Координата высоты
+/// \param w Координата широты
 void delete_word_g(std::string value, Matrix& matrix, size_t h, size_t w)	
 {
 	size_t word_size = value.size();
@@ -123,6 +145,10 @@ void delete_word_g(std::string value, Matrix& matrix, size_t h, size_t w)
 }
 
 ///Функция удаления вертикальных слов
+/// \param value Слово, подлежащее удалению
+/// \param matrix Матрица содержащая сетку кроссворда
+/// \param h Координата высоты
+/// \param w Координата широты
 void delete_word_v(std::string value, Matrix& matrix, size_t h, size_t w)	
 {
 	size_t word_size = value.size();
@@ -151,6 +177,10 @@ void delete_word_v(std::string value, Matrix& matrix, size_t h, size_t w)
 }
 
 ///Фунцкия удаления слов независящая от ориентации
+/// \param words Список слов
+/// \param n Номер слова
+/// \param matrix Матрица содержащая сетку кроссворда
+ /// \return Удалилось ли слово
 bool delete_word(Words& words, size_t n, Matrix& matrix)	
 {
 	if (!words.get_word_status(n))
@@ -169,6 +199,10 @@ bool delete_word(Words& words, size_t n, Matrix& matrix)
 }
 
 ///Функция вставки слов в подходящее место матрицы
+/// \param words Список слов
+/// \param n Номер слова
+/// \param matrix Матрица содержащая сетку кроссворда
+ /// \return Добавилось ли слово
 bool add_word(Words& words, size_t n, Matrix& matrix)	
 {
 	double m_coef = matrix.get_coef();
@@ -184,7 +218,6 @@ bool add_word(Words& words, size_t n, Matrix& matrix)
 			{
 				if (m_coef < matrix.get_coef())
 				{
-//					std::cout << delete_word(words, n, matrix) << add_word(words, n, matrix, i, j) << "work?" <<std::endl;
 					check = true;
 					h = i; w = j;
 					m_coef = matrix.get_coef();
@@ -197,6 +230,11 @@ bool add_word(Words& words, size_t n, Matrix& matrix)
 }
 
 ///Рекурсивный алгоритм вставки слов
+/// \param words Список слов
+/// \param matrix Матрица содержащая сетку кроссворда
+/// \param res Матрица содержащая наиболее оптимальную расстановку слов
+/// \param saved Список слов, содержащий слова использованные для матрицы res
+/// \param l Список слов, хранящий использованые слова
 void cross(Words& words, Matrix& matrix, Matrix& res, std::list<size_t>& saved, std::list<size_t>& l)	
 {
 	for (size_t k = 0; k < words.get_words_numbers(); k++)
@@ -206,7 +244,7 @@ void cross(Words& words, Matrix& matrix, Matrix& res, std::list<size_t>& saved, 
 
 			cross(words, matrix, res, saved, l);
 		}
-//	std::cout << matrix.get_coef() << " get_coef\n";
+
 	if (matrix.get_coef() > res.get_coef())
 	{
 		saved = l;
@@ -218,6 +256,8 @@ void cross(Words& words, Matrix& matrix, Matrix& res, std::list<size_t>& saved, 
 }
 
 ///Функция обертка алгоритма составления крисскросса
+/// \param words Список слов
+/// \param matrix Матрица содержащая сетку кроссворда
 void crisscross(Words& words, Matrix& matrix)	
 {
 	Matrix res(matrix);

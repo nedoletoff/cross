@@ -11,15 +11,15 @@ int main()
 {
 		Matrix matrix(15, 15);
 		std::string input, output;
-//		std::cout << "Input file: ";
-//		std::cin >> input;
-//		std::cout << "Output file: ";
-//		std::cin >> output;
+		std::cout << "Input file: ";
+		std::cin >> input;
+		std::cout << "Output file: ";
+		std::cin >> output;
 	try
 	{
-		Words words("input.txt");
+		Words words(input);
 		crisscross(words, matrix);
-		std::ofstream file("output.txt");
+		std::ofstream file(output);
 		file << matrix;
 	}
 	catch (Exception e)
