@@ -197,23 +197,21 @@ bool add_word(Words& words, size_t n, Matrix& matrix)
 }
 
 ///Рекурсивный алгоритм вставки слов
-void cross(Words& words, Matrix& matrix, Matrix& res, std::list<size_t>& l)	
+void cross(Words& words, Matrix& matrix, Matrix& res, std::list<size_t>& saved, std::list<size_t>& l)	
 {
 	for (size_t k = 0; k < words.get_words_numbers(); k++)
 		if (add_word(words, k, matrix))
 		{
-//           		 if (l.size() > words.get_words_numbers())
-//                		throw Exception("what");
-			if (matrix.get_coef() > res.get_coef())
-			{
-//				std::cout << res.get_coef() << " - " << matrix.get_coef() << std::endl;
-				res = matrix;
-			}
 			l.push_back(k);
-			cross(words, matrix, res, l);
+
+			cross(words, matrix, res, saved, l);
 		}
 //	std::cout << matrix.get_coef() << " get_coef\n";
-
+	if (matrix.get_coef() > res.get_coef())
+	{
+		saved = l;
+		res = matrix;
+	}
 	delete_word(words, l.back(), matrix);
 	if (l.size())
 		l.pop_back();
@@ -223,13 +221,19 @@ void cross(Words& words, Matrix& matrix, Matrix& res, std::list<size_t>& l)
 void crisscross(Words& words, Matrix& matrix)	
 {
 	Matrix res(matrix);
-	std::list<size_t> l;
-	cross(words, matrix, res, l);
+	std::list<size_t> l, saved;
+	cross(words, matrix, res, saved, l);
+	if (res.get_coef() == 0)
+	{
+		add_word_g(words, 0, matrix, 5, 0);
+		cross(words, matrix, res, saved, l);
+	}
 	matrix = res;
-	std::cout << matrix.get_unfilled() << std::endl;
 	matrix.shrink_to_fit('\0');
 	matrix.change_unfilled('\0', ' ');
-	std::cout << "List of not used words:";
+	for (auto& e : saved)
+		words.change_word_status(e, true);
+	std::cout << "List of not used words: ";
 	for (size_t i = 0; i < words.get_words_numbers(); i++)
 		if (!words.get_word_status(i))
 			std::cout << words.get_word(i) << " ";

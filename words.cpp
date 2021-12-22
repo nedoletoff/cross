@@ -13,18 +13,23 @@ Words::Words(std::string filename)
 	file >> temp;
 	words.push_back(temp);
 	auto it = words.begin();
+	std::cout << "Wrong words: ";
 	for (file >> temp; !file.eof(); file >> temp)
-        	if (temp.size() >= 3)   //можно добавить какойт-то список невошедших слов
-        	{
+        	if (temp.size() >= 3 && temp.size() <= 15)           
+		{
 			for (it = words.begin(); it  !=  words.end() && *it <= temp; it++)
-				if (temp == *it)     //и сюда тоже
+				if (temp == *it)     
 				{
+					std::cout << temp << " (dublicate) ";
 					words.erase(it--);
 					break;
 				}
 			words.insert(it, temp);
        		}
+		else
+			std::cout << temp << " ";
 	std::for_each(words.begin(), words.end(), [this](std::string a) { this->add_word(a); });
+	std::cout << std::endl;
 }
 
 std::string Words::get_word(size_t n)

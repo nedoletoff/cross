@@ -20,7 +20,6 @@ int main()
 		Words words("input.txt");
 		crisscross(words, matrix);
 		std::ofstream file("output.txt");
-		std::cout << matrix.get_coef() << std::endl;
 		file << matrix;
 	}
 	catch (Exception e)
