@@ -1,13 +1,6 @@
 #include "crisscross.hpp"
 #include <iostream>
 
-///Функция вставки слов по координатам горизонтально
-/// \param words Список слов
-/// \param n Номер слова
-/// \param matrix Матрица содержащая сетку кроссворда
-/// \param h Координата высоты
-/// \param w Координата широты
- /// \return Добавилось ли слово
 bool add_word_g(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)	
 {
 	std::string value = words.get_word(n);
@@ -43,6 +36,8 @@ bool add_word_g(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 		}
 		if (matrix.legal(h, w + word_size))
 			matrix.multiply_cell_status(h, w + word_size, ::used);
+		if (matrix.legal(h, w - 1))
+				matrix.multiply_cell_status(h, w - 1, ::used);
 		words.change_word_status(n, true);
 		words.set_coordinates(n, -1, h, w);
 		return true;
@@ -50,13 +45,6 @@ bool add_word_g(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 	return false;
 }
 
-///Функция вставки слов по координатам вертикально
-/// \param words Список слов
-/// \param n Номер слова
-/// \param matrix Матрица содержащая сетку кроссворда
-/// \param h Координата высоты
-/// \param w Координата широты
- /// \return Добавилось ли слово
 bool add_word_v(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)	
 {
 	std::string value = words.get_word(n);
@@ -93,6 +81,8 @@ bool add_word_v(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 		}
 		if (matrix.legal(h + word_size, w))
 			matrix.multiply_cell_status(h + word_size, w, ::used);
+		if (matrix.legal(h - 1, w))
+				matrix.multiply_cell_status(h - 1, w, ::used);
 		words.change_word_status(n, true);
 		words.set_coordinates(n, 1, h, w);
 		return true;
@@ -100,13 +90,6 @@ bool add_word_v(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 	return false;
 }
 
-///Функция вставки слов по координатам
-/// \param words Список слов
-/// \param n Номер слова
-/// \param matrix Матрица содержащая сетку кроссворда
-/// \param h Координата высоты
-/// \param w Координата широты
- /// \return Добавилось ли слово
 bool add_word(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)	
 {
 	if (add_word_g(words, n, matrix, h, w))
@@ -114,11 +97,6 @@ bool add_word(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 	return add_word_v(words, n, matrix, h, w);
 }
 
-///Функция удаления горизонтальных слов
-/// \param value Слово, подлежащее удалению
-/// \param matrix Матрица содержащая сетку кроссворда
-/// \param h Координата высоты
-/// \param w Координата широты
 void delete_word_g(std::string value, Matrix& matrix, size_t h, size_t w)	
 {
 	size_t word_size = value.size();
@@ -142,13 +120,11 @@ void delete_word_g(std::string value, Matrix& matrix, size_t h, size_t w)
 	}
 	if (matrix.legal(h, w + word_size))
 		matrix.divide_cell_status(h, w + word_size, ::used);
+	if (matrix.legal(h, w - 1))
+			matrix.divide_cell_status(h, w - 1, ::used);
 }
 
-///Функция удаления вертикальных слов
-/// \param value Слово, подлежащее удалению
-/// \param matrix Матрица содержащая сетку кроссворда
-/// \param h Координата высоты
-/// \param w Координата широты
+
 void delete_word_v(std::string value, Matrix& matrix, size_t h, size_t w)	
 {
 	size_t word_size = value.size();
@@ -174,13 +150,11 @@ void delete_word_v(std::string value, Matrix& matrix, size_t h, size_t w)
 	}
 	if (matrix.legal(h + word_size, w))
 		matrix.divide_cell_status(h + word_size, w, ::used);
+	if (matrix.legal(h - 1, w))
+			matrix.divide_cell_status(h - 1, w, ::used);
+
 }
 
-///Фунцкия удаления слов независящая от ориентации
-/// \param words Список слов
-/// \param n Номер слова
-/// \param matrix Матрица содержащая сетку кроссворда
- /// \return Удалилось ли слово
 bool delete_word(Words& words, size_t n, Matrix& matrix)	
 {
 	if (!words.get_word_status(n))
@@ -198,11 +172,6 @@ bool delete_word(Words& words, size_t n, Matrix& matrix)
 	return true;
 }
 
-///Функция вставки слов в подходящее место матрицы
-/// \param words Список слов
-/// \param n Номер слова
-/// \param matrix Матрица содержащая сетку кроссворда
- /// \return Добавилось ли слово
 bool add_word(Words& words, size_t n, Matrix& matrix)	
 {
 	double m_coef = matrix.get_coef();
@@ -229,12 +198,7 @@ bool add_word(Words& words, size_t n, Matrix& matrix)
 	return false;
 }
 
-///Рекурсивный алгоритм вставки слов
-/// \param words Список слов
-/// \param matrix Матрица содержащая сетку кроссворда
-/// \param res Матрица содержащая наиболее оптимальную расстановку слов
-/// \param saved Список слов, содержащий слова использованные для матрицы res
-/// \param l Список слов, хранящий использованые слова
+
 void cross(Words& words, Matrix& matrix, Matrix& res, std::list<size_t>& saved, std::list<size_t>& l)	
 {
 	for (size_t k = 0; k < words.get_words_numbers(); k++)
@@ -255,9 +219,7 @@ void cross(Words& words, Matrix& matrix, Matrix& res, std::list<size_t>& saved, 
 		l.pop_back();
 }
 
-///Функция обертка алгоритма составления крисскросса
-/// \param words Список слов
-/// \param matrix Матрица содержащая сетку кроссворда
+
 void crisscross(Words& words, Matrix& matrix)	
 {
 	Matrix res(matrix);

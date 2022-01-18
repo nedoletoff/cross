@@ -1,0 +1,214 @@
+\hypertarget{crisscross_8hpp}{}\doxysection{Файл crisscross.\+hpp}
+\label{crisscross_8hpp}\index{crisscross.hpp@{crisscross.hpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include \char`\"{}matrix.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}words.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}exceptions.\+hpp\char`\"{}}\newline
+\doxysubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{crisscross_8hpp_ab22220b1ec2e08578c1b399f04e604e6}{add\+\_\+word}} (\mbox{\hyperlink{classWords}{Words}} \&words, size\+\_\+t n, \mbox{\hyperlink{classMatrix}{Matrix}} \&matrix)
+\item 
+bool \mbox{\hyperlink{crisscross_8hpp_a0060320d0b341f84617d44803286c100}{delete\+\_\+word}} (\mbox{\hyperlink{classWords}{Words}} \&words, size\+\_\+t n, \mbox{\hyperlink{classMatrix}{Matrix}} \&matrix)
+\item 
+void \mbox{\hyperlink{crisscross_8hpp_ad27245f02b72a0ad27b0bc9412b05f9d}{crisscross}} (\mbox{\hyperlink{classWords}{Words}} \&words, \mbox{\hyperlink{classMatrix}{Matrix}} \&matrix)
+\item 
+void \mbox{\hyperlink{crisscross_8hpp_a0097548e0a7cc5c49ee4c1af2c2d39eb}{cross}} (\mbox{\hyperlink{classWords}{Words}} \&words, \mbox{\hyperlink{classMatrix}{Matrix}} \&matrix, \mbox{\hyperlink{classMatrix}{Matrix}} \&res, std\+::list$<$ size\+\_\+t $>$ \&saved, std\+::list$<$ size\+\_\+t $>$ \&l)
+\item 
+void \mbox{\hyperlink{crisscross_8hpp_a548ecb7bc4c81ba8743c5b315e834a0c}{delete\+\_\+word\+\_\+v}} (std\+::string value, \mbox{\hyperlink{classMatrix}{Matrix}} \&matrix, size\+\_\+t h, size\+\_\+t w)
+\item 
+void \mbox{\hyperlink{crisscross_8hpp_a334206180c91278b8027d5cd887730f7}{delete\+\_\+word\+\_\+g}} (std\+::string value, \mbox{\hyperlink{classMatrix}{Matrix}} \&matrix, size\+\_\+t h, size\+\_\+t w)
+\item 
+bool \mbox{\hyperlink{crisscross_8hpp_af31a091f247c69f0755bbef2fea66698}{add\+\_\+word}} (\mbox{\hyperlink{classWords}{Words}} \&words, size\+\_\+t n, \mbox{\hyperlink{classMatrix}{Matrix}} \&matrix, size\+\_\+t h, size\+\_\+t w)
+\item 
+bool \mbox{\hyperlink{crisscross_8hpp_a010f61f4dfed7d714752b848b7f6e34b}{add\+\_\+word\+\_\+v}} (\mbox{\hyperlink{classWords}{Words}} \&words, size\+\_\+t n, \mbox{\hyperlink{classMatrix}{Matrix}} \&matrix, size\+\_\+t h, size\+\_\+t w)
+\item 
+bool \mbox{\hyperlink{crisscross_8hpp_aed350b8b0d71be53dd2cb32b529b4055}{add\+\_\+word\+\_\+g}} (\mbox{\hyperlink{classWords}{Words}} \&words, size\+\_\+t n, \mbox{\hyperlink{classMatrix}{Matrix}} \&matrix, size\+\_\+t h, size\+\_\+t w)
+\end{DoxyCompactItemize}
+\doxysubsection*{Переменные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{crisscross_8hpp_a810e189b51a8ffe7dfb696b32f9cd63d}\label{crisscross_8hpp_a810e189b51a8ffe7dfb696b32f9cd63d}} 
+const int {\bfseries not\+\_\+used}
+\begin{DoxyCompactList}\small\item\em Значение для неиспользуемых ячеек \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{crisscross_8hpp_a268c878cc986a23b0384f9c36b8f0d70}\label{crisscross_8hpp_a268c878cc986a23b0384f9c36b8f0d70}} 
+const int {\bfseries gorizontal}
+\begin{DoxyCompactList}\small\item\em Значение для клеток находящихся рядом с горизонтальными словами \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{crisscross_8hpp_a5c07f2400fc9d3c89385b7f70cc26008}\label{crisscross_8hpp_a5c07f2400fc9d3c89385b7f70cc26008}} 
+const int {\bfseries vertical}
+\begin{DoxyCompactList}\small\item\em Значения для клеток находящихся рядом с вертикальными словами \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{crisscross_8hpp_afa2d453c12e24771e24241900f90c890}\label{crisscross_8hpp_afa2d453c12e24771e24241900f90c890}} 
+const int {\bfseries used}
+\begin{DoxyCompactList}\small\item\em Значения для клеток хранящие буквы \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Функции}
+\mbox{\Hypertarget{crisscross_8hpp_ab22220b1ec2e08578c1b399f04e604e6}\label{crisscross_8hpp_ab22220b1ec2e08578c1b399f04e604e6}} 
+\index{crisscross.hpp@{crisscross.hpp}!add\_word@{add\_word}}
+\index{add\_word@{add\_word}!crisscross.hpp@{crisscross.hpp}}
+\doxysubsubsection{\texorpdfstring{add\_word()}{add\_word()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool add\+\_\+word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classWords}{Words}} \&}]{words,  }\item[{size\+\_\+t}]{n,  }\item[{\mbox{\hyperlink{classMatrix}{Matrix}} \&}]{matrix }\end{DoxyParamCaption})}
+
+Функция вставки слов в подходящее место матрицы 
+\begin{DoxyParams}{Аргументы}
+{\em words} & Список слов \\
+\hline
+{\em n} & Номер слова \\
+\hline
+{\em matrix} & Матрица содержащая сетку кроссворда\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Добавилось ли слово 
+\end{DoxyReturn}
+\mbox{\Hypertarget{crisscross_8hpp_af31a091f247c69f0755bbef2fea66698}\label{crisscross_8hpp_af31a091f247c69f0755bbef2fea66698}} 
+\index{crisscross.hpp@{crisscross.hpp}!add\_word@{add\_word}}
+\index{add\_word@{add\_word}!crisscross.hpp@{crisscross.hpp}}
+\doxysubsubsection{\texorpdfstring{add\_word()}{add\_word()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool add\+\_\+word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classWords}{Words}} \&}]{words,  }\item[{size\+\_\+t}]{n,  }\item[{\mbox{\hyperlink{classMatrix}{Matrix}} \&}]{matrix,  }\item[{size\+\_\+t}]{h,  }\item[{size\+\_\+t}]{w }\end{DoxyParamCaption})}
+
+Функция вставки слов по координатам 
+\begin{DoxyParams}{Аргументы}
+{\em words} & Список слов \\
+\hline
+{\em n} & Номер слова \\
+\hline
+{\em matrix} & Матрица содержащая сетку кроссворда \\
+\hline
+{\em h} & Координата высоты \\
+\hline
+{\em w} & Координата широты\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Добавилось ли слово 
+\end{DoxyReturn}
+\mbox{\Hypertarget{crisscross_8hpp_aed350b8b0d71be53dd2cb32b529b4055}\label{crisscross_8hpp_aed350b8b0d71be53dd2cb32b529b4055}} 
+\index{crisscross.hpp@{crisscross.hpp}!add\_word\_g@{add\_word\_g}}
+\index{add\_word\_g@{add\_word\_g}!crisscross.hpp@{crisscross.hpp}}
+\doxysubsubsection{\texorpdfstring{add\_word\_g()}{add\_word\_g()}}
+{\footnotesize\ttfamily bool add\+\_\+word\+\_\+g (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classWords}{Words}} \&}]{words,  }\item[{size\+\_\+t}]{n,  }\item[{\mbox{\hyperlink{classMatrix}{Matrix}} \&}]{matrix,  }\item[{size\+\_\+t}]{h,  }\item[{size\+\_\+t}]{w }\end{DoxyParamCaption})}
+
+Функция вставки слов по координатам горизонтально 
+\begin{DoxyParams}{Аргументы}
+{\em words} & Список слов \\
+\hline
+{\em n} & Номер слова \\
+\hline
+{\em matrix} & Матрица содержащая сетку кроссворда \\
+\hline
+{\em h} & Координата высоты \\
+\hline
+{\em w} & Координата широты\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Добавилось ли слово 
+\end{DoxyReturn}
+\mbox{\Hypertarget{crisscross_8hpp_a010f61f4dfed7d714752b848b7f6e34b}\label{crisscross_8hpp_a010f61f4dfed7d714752b848b7f6e34b}} 
+\index{crisscross.hpp@{crisscross.hpp}!add\_word\_v@{add\_word\_v}}
+\index{add\_word\_v@{add\_word\_v}!crisscross.hpp@{crisscross.hpp}}
+\doxysubsubsection{\texorpdfstring{add\_word\_v()}{add\_word\_v()}}
+{\footnotesize\ttfamily bool add\+\_\+word\+\_\+v (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classWords}{Words}} \&}]{words,  }\item[{size\+\_\+t}]{n,  }\item[{\mbox{\hyperlink{classMatrix}{Matrix}} \&}]{matrix,  }\item[{size\+\_\+t}]{h,  }\item[{size\+\_\+t}]{w }\end{DoxyParamCaption})}
+
+Функция вставки слов по координатам вертикально 
+\begin{DoxyParams}{Аргументы}
+{\em words} & Список слов \\
+\hline
+{\em n} & Номер слова \\
+\hline
+{\em matrix} & Матрица содержащая сетку кроссворда \\
+\hline
+{\em h} & Координата высоты \\
+\hline
+{\em w} & Координата широты\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Добавилось ли слово 
+\end{DoxyReturn}
+\mbox{\Hypertarget{crisscross_8hpp_ad27245f02b72a0ad27b0bc9412b05f9d}\label{crisscross_8hpp_ad27245f02b72a0ad27b0bc9412b05f9d}} 
+\index{crisscross.hpp@{crisscross.hpp}!crisscross@{crisscross}}
+\index{crisscross@{crisscross}!crisscross.hpp@{crisscross.hpp}}
+\doxysubsubsection{\texorpdfstring{crisscross()}{crisscross()}}
+{\footnotesize\ttfamily void crisscross (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classWords}{Words}} \&}]{words,  }\item[{\mbox{\hyperlink{classMatrix}{Matrix}} \&}]{matrix }\end{DoxyParamCaption})}
+
+Функция обертка алгоритма составления крисскросса 
+\begin{DoxyParams}{Аргументы}
+{\em words} & Список слов \\
+\hline
+{\em matrix} & Матрица содержащая сетку кроссворда \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{crisscross_8hpp_a0097548e0a7cc5c49ee4c1af2c2d39eb}\label{crisscross_8hpp_a0097548e0a7cc5c49ee4c1af2c2d39eb}} 
+\index{crisscross.hpp@{crisscross.hpp}!cross@{cross}}
+\index{cross@{cross}!crisscross.hpp@{crisscross.hpp}}
+\doxysubsubsection{\texorpdfstring{cross()}{cross()}}
+{\footnotesize\ttfamily void cross (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classWords}{Words}} \&}]{words,  }\item[{\mbox{\hyperlink{classMatrix}{Matrix}} \&}]{matrix,  }\item[{\mbox{\hyperlink{classMatrix}{Matrix}} \&}]{res,  }\item[{std\+::list$<$ size\+\_\+t $>$ \&}]{saved,  }\item[{std\+::list$<$ size\+\_\+t $>$ \&}]{l }\end{DoxyParamCaption})}
+
+Рекурсивный алгоритм вставки слов 
+\begin{DoxyParams}{Аргументы}
+{\em words} & Список слов \\
+\hline
+{\em matrix} & Матрица содержащая сетку кроссворда \\
+\hline
+{\em res} & Матрица содержащая наиболее оптимальную расстановку слов \\
+\hline
+{\em saved} & Список слов, содержащий слова использованные для матрицы res \\
+\hline
+{\em l} & Список слов, хранящий использованые слова \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{crisscross_8hpp_a0060320d0b341f84617d44803286c100}\label{crisscross_8hpp_a0060320d0b341f84617d44803286c100}} 
+\index{crisscross.hpp@{crisscross.hpp}!delete\_word@{delete\_word}}
+\index{delete\_word@{delete\_word}!crisscross.hpp@{crisscross.hpp}}
+\doxysubsubsection{\texorpdfstring{delete\_word()}{delete\_word()}}
+{\footnotesize\ttfamily bool delete\+\_\+word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classWords}{Words}} \&}]{words,  }\item[{size\+\_\+t}]{n,  }\item[{\mbox{\hyperlink{classMatrix}{Matrix}} \&}]{matrix }\end{DoxyParamCaption})}
+
+Фунцкия удаления слов независящая от ориентации 
+\begin{DoxyParams}{Аргументы}
+{\em words} & Список слов \\
+\hline
+{\em n} & Номер слова \\
+\hline
+{\em matrix} & Матрица содержащая сетку кроссворда\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Удалилось ли слово 
+\end{DoxyReturn}
+\mbox{\Hypertarget{crisscross_8hpp_a334206180c91278b8027d5cd887730f7}\label{crisscross_8hpp_a334206180c91278b8027d5cd887730f7}} 
+\index{crisscross.hpp@{crisscross.hpp}!delete\_word\_g@{delete\_word\_g}}
+\index{delete\_word\_g@{delete\_word\_g}!crisscross.hpp@{crisscross.hpp}}
+\doxysubsubsection{\texorpdfstring{delete\_word\_g()}{delete\_word\_g()}}
+{\footnotesize\ttfamily void delete\+\_\+word\+\_\+g (\begin{DoxyParamCaption}\item[{std\+::string}]{value,  }\item[{\mbox{\hyperlink{classMatrix}{Matrix}} \&}]{matrix,  }\item[{size\+\_\+t}]{h,  }\item[{size\+\_\+t}]{w }\end{DoxyParamCaption})}
+
+Функция удаления горизонтальных слов 
+\begin{DoxyParams}{Аргументы}
+{\em value} & Слово, подлежащее удалению \\
+\hline
+{\em matrix} & Матрица содержащая сетку кроссворда \\
+\hline
+{\em h} & Координата высоты \\
+\hline
+{\em w} & Координата широты \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{crisscross_8hpp_a548ecb7bc4c81ba8743c5b315e834a0c}\label{crisscross_8hpp_a548ecb7bc4c81ba8743c5b315e834a0c}} 
+\index{crisscross.hpp@{crisscross.hpp}!delete\_word\_v@{delete\_word\_v}}
+\index{delete\_word\_v@{delete\_word\_v}!crisscross.hpp@{crisscross.hpp}}
+\doxysubsubsection{\texorpdfstring{delete\_word\_v()}{delete\_word\_v()}}
+{\footnotesize\ttfamily void delete\+\_\+word\+\_\+v (\begin{DoxyParamCaption}\item[{std\+::string}]{value,  }\item[{\mbox{\hyperlink{classMatrix}{Matrix}} \&}]{matrix,  }\item[{size\+\_\+t}]{h,  }\item[{size\+\_\+t}]{w }\end{DoxyParamCaption})}
+
+Функция удаления вертикальных слов 
+\begin{DoxyParams}{Аргументы}
+{\em value} & Слово, подлежащее удалению \\
+\hline
+{\em matrix} & Матрица содержащая сетку кроссворда \\
+\hline
+{\em h} & Координата высоты \\
+\hline
+{\em w} & Координата широты \\
+\hline
+\end{DoxyParams}

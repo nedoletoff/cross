@@ -1,4 +1,7 @@
 #pragma once
+
+/// \file
+
 #include <iostream>
 #include <vector>
 #include "exceptions.hpp"

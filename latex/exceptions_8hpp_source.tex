@@ -1,0 +1,23 @@
+\hypertarget{exceptions_8hpp_source}{}\doxysection{exceptions.\+hpp}
+\mbox{\hyperlink{exceptions_8hpp}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{classException}{Exception}}    }
+\DoxyCodeLine{9 \{}
+\DoxyCodeLine{10     \textcolor{keyword}{private}:}
+\DoxyCodeLine{11         std::string val;    }
+\DoxyCodeLine{12     \textcolor{keyword}{public}:}
+\DoxyCodeLine{13         \mbox{\hyperlink{classException}{Exception}}(\textcolor{keyword}{const} std::string value);}
+\DoxyCodeLine{14     \textcolor{keyword}{friend} std::ostream\& operator<<(std::ostream\& os, \mbox{\hyperlink{classException}{Exception}}\& obj)}
+\DoxyCodeLine{15     \{}
+\DoxyCodeLine{16         os << obj.val;}
+\DoxyCodeLine{17         \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{18     \}}
+\DoxyCodeLine{19 \};}
+
+\end{DoxyCode}

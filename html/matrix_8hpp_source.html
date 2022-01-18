@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>cross: Исходный файл matrix.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">cross
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Поиск','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">matrix.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="matrix_8hpp.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="exceptions_8hpp.html">exceptions.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="matrix_8hpp.html#ad3bc2febbf67ed672ac22dd10b0ca216">    9</a></span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="matrix_8hpp.html#ad3bc2febbf67ed672ac22dd10b0ca216">not_used</a>(1);  </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="matrix_8hpp.html#a0040216179a291177fd043792e937636">   10</a></span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="matrix_8hpp.html#a0040216179a291177fd043792e937636">gorizontal</a>(2);</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="matrix_8hpp.html#a9a4621b70b502fa9d60a460362cdf805">   11</a></span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="matrix_8hpp.html#a9a4621b70b502fa9d60a460362cdf805">vertical</a>(3);  </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="matrix_8hpp.html#a0ecbf15a59938d778b852cb14159c0af">   12</a></span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="matrix_8hpp.html#a0ecbf15a59938d778b852cb14159c0af">used</a>(5);      </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classMatrix.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classMatrix.html">Matrix</a>    </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keywordtype">size_t</span> height;  </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordtype">size_t</span> width;   </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keywordtype">char</span>** data;    </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keywordtype">int</span>** status;   </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <a class="code hl_class" href="classMatrix.html">Matrix</a>(<span class="keywordtype">size_t</span> h, <span class="keywordtype">size_t</span> w);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_class" href="classMatrix.html">~Matrix</a>();  </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <a class="code hl_class" href="classMatrix.html">Matrix</a>(<a class="code hl_class" href="classMatrix.html">Matrix</a>&amp; a);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <a class="code hl_class" href="classMatrix.html">Matrix</a>&amp; operator=(<a class="code hl_class" href="classMatrix.html">Matrix</a>&amp; a);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMatrix.html#a53ad6b79f8b1e302a2b34aacc5a194d1">set_cell</a>(<span class="keywordtype">size_t</span> h, <span class="keywordtype">size_t</span> w, <span class="keywordtype">char</span> value);  </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMatrix.html#a04dcd84dd4b5f4cc6c7f28de9a69b205">set_cell_status</a>(<span class="keywordtype">size_t</span> h, <span class="keywordtype">size_t</span> w, <span class="keywordtype">int</span> value);    </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMatrix.html#a2b301b34d9d0acb59ca907e6516e2966">multiply_cell_status</a>(<span class="keywordtype">size_t</span> h, <span class="keywordtype">size_t</span> w, <span class="keywordtype">int</span> value);   </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMatrix.html#aa2e23da3b78f24f50d7cb4abc26145e4">divide_cell_status</a>(<span class="keywordtype">size_t</span> h, <span class="keywordtype">size_t</span> w, <span class="keywordtype">int</span> value); </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordtype">char</span> <a class="code hl_function" href="classMatrix.html#a00fedd043ffd872a71097bf51573b722">get_cell</a>(<span class="keywordtype">size_t</span> h, <span class="keywordtype">size_t</span> w);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classMatrix.html#a8eaa2d0ebf69555ae6570d4b809332c6">get_cell_status</a>(<span class="keywordtype">size_t</span> h, <span class="keywordtype">size_t</span> w);    </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordtype">size_t</span> <a class="code hl_function" href="classMatrix.html#a6926bcdb1e6ef09fc94b6ce7da04d807">get_height</a>();    </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordtype">size_t</span> <a class="code hl_function" href="classMatrix.html#a3e7c115f9678a20e3507e1b758784c13">get_width</a>(); </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordtype">size_t</span> <a class="code hl_function" href="classMatrix.html#a44dd98dca0430a110209a88e52ae57b1">get_unfilled</a>(<span class="keywordtype">char</span> check);    </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordtype">size_t</span> <a class="code hl_function" href="classMatrix.html#a44dd98dca0430a110209a88e52ae57b1">get_unfilled</a>();  </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMatrix.html#ac0aa1a3d2ef158e9f2bc3fa4648b7b1e">change_unfilled</a>(<span class="keywordtype">char</span> check, <span class="keywordtype">char</span> value);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMatrix.html#a4c425bbe1f0cf8463d19c54d0326a53e">increase_size</a>(<span class="keywordtype">size_t</span> h, <span class="keywordtype">size_t</span> w);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMatrix.html#adb2e89d46016aa051f2f2a5af0ecc1e1">shrink_to_fit</a>(<span class="keywordtype">char</span> check); </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordtype">double</span> <a class="code hl_function" href="classMatrix.html#a8061a8ab2864d1eb889fd26cec74631f">get_coef</a>();  </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classMatrix.html#a5b4474a487c03021759869753be8de60">legal</a>(<span class="keywordtype">size_t</span> h, <span class="keywordtype">size_t</span> w); </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">friend</span> std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, <a class="code hl_class" href="classMatrix.html">Matrix</a>&amp; value)</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; value.height; i++)</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; value.width; j++)</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                os &lt;&lt; value.data[i][j];</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            os &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordflow">return</span> os;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>};</div>
+<div class="ttc" id="aclassMatrix_html"><div class="ttname"><a href="classMatrix.html">Matrix</a></div><div class="ttdoc">Класс для графического вывода</div><div class="ttdef"><b>Definition:</b> matrix.hpp:16</div></div>
+<div class="ttc" id="aclassMatrix_html_a00fedd043ffd872a71097bf51573b722"><div class="ttname"><a href="classMatrix.html#a00fedd043ffd872a71097bf51573b722">Matrix::get_cell</a></div><div class="ttdeci">char get_cell(size_t h, size_t w)</div><div class="ttdef"><b>Definition:</b> matrix.cpp:122</div></div>
+<div class="ttc" id="aclassMatrix_html_a04dcd84dd4b5f4cc6c7f28de9a69b205"><div class="ttname"><a href="classMatrix.html#a04dcd84dd4b5f4cc6c7f28de9a69b205">Matrix::set_cell_status</a></div><div class="ttdeci">void set_cell_status(size_t h, size_t w, int value)</div><div class="ttdef"><b>Definition:</b> matrix.cpp:93</div></div>
+<div class="ttc" id="aclassMatrix_html_a2b301b34d9d0acb59ca907e6516e2966"><div class="ttname"><a href="classMatrix.html#a2b301b34d9d0acb59ca907e6516e2966">Matrix::multiply_cell_status</a></div><div class="ttdeci">void multiply_cell_status(size_t h, size_t w, int value)</div><div class="ttdef"><b>Definition:</b> matrix.cpp:102</div></div>
+<div class="ttc" id="aclassMatrix_html_a3e7c115f9678a20e3507e1b758784c13"><div class="ttname"><a href="classMatrix.html#a3e7c115f9678a20e3507e1b758784c13">Matrix::get_width</a></div><div class="ttdeci">size_t get_width()</div><div class="ttdef"><b>Definition:</b> matrix.cpp:144</div></div>
+<div class="ttc" id="aclassMatrix_html_a44dd98dca0430a110209a88e52ae57b1"><div class="ttname"><a href="classMatrix.html#a44dd98dca0430a110209a88e52ae57b1">Matrix::get_unfilled</a></div><div class="ttdeci">size_t get_unfilled()</div><div class="ttdef"><b>Definition:</b> matrix.cpp:159</div></div>
+<div class="ttc" id="aclassMatrix_html_a4c425bbe1f0cf8463d19c54d0326a53e"><div class="ttname"><a href="classMatrix.html#a4c425bbe1f0cf8463d19c54d0326a53e">Matrix::increase_size</a></div><div class="ttdeci">void increase_size(size_t h, size_t w)</div><div class="ttdef"><b>Definition:</b> matrix.cpp:177</div></div>
+<div class="ttc" id="aclassMatrix_html_a53ad6b79f8b1e302a2b34aacc5a194d1"><div class="ttname"><a href="classMatrix.html#a53ad6b79f8b1e302a2b34aacc5a194d1">Matrix::set_cell</a></div><div class="ttdeci">void set_cell(size_t h, size_t w, char value)</div><div class="ttdef"><b>Definition:</b> matrix.cpp:84</div></div>
+<div class="ttc" id="aclassMatrix_html_a5b4474a487c03021759869753be8de60"><div class="ttname"><a href="classMatrix.html#a5b4474a487c03021759869753be8de60">Matrix::legal</a></div><div class="ttdeci">bool legal(size_t h, size_t w)</div><div class="ttdef"><b>Definition:</b> matrix.cpp:293</div></div>
+<div class="ttc" id="aclassMatrix_html_a6926bcdb1e6ef09fc94b6ce7da04d807"><div class="ttname"><a href="classMatrix.html#a6926bcdb1e6ef09fc94b6ce7da04d807">Matrix::get_height</a></div><div class="ttdeci">size_t get_height()</div><div class="ttdef"><b>Definition:</b> matrix.cpp:139</div></div>
+<div class="ttc" id="aclassMatrix_html_a8061a8ab2864d1eb889fd26cec74631f"><div class="ttname"><a href="classMatrix.html#a8061a8ab2864d1eb889fd26cec74631f">Matrix::get_coef</a></div><div class="ttdeci">double get_coef()</div><div class="ttdef"><b>Definition:</b> matrix.cpp:281</div></div>
+<div class="ttc" id="aclassMatrix_html_a8eaa2d0ebf69555ae6570d4b809332c6"><div class="ttname"><a href="classMatrix.html#a8eaa2d0ebf69555ae6570d4b809332c6">Matrix::get_cell_status</a></div><div class="ttdeci">int get_cell_status(size_t h, size_t w)</div><div class="ttdef"><b>Definition:</b> matrix.cpp:131</div></div>
+<div class="ttc" id="aclassMatrix_html_aa2e23da3b78f24f50d7cb4abc26145e4"><div class="ttname"><a href="classMatrix.html#aa2e23da3b78f24f50d7cb4abc26145e4">Matrix::divide_cell_status</a></div><div class="ttdeci">void divide_cell_status(size_t h, size_t w, int value)</div><div class="ttdef"><b>Definition:</b> matrix.cpp:112</div></div>
+<div class="ttc" id="aclassMatrix_html_ac0aa1a3d2ef158e9f2bc3fa4648b7b1e"><div class="ttname"><a href="classMatrix.html#ac0aa1a3d2ef158e9f2bc3fa4648b7b1e">Matrix::change_unfilled</a></div><div class="ttdeci">void change_unfilled(char check, char value)</div><div class="ttdef"><b>Definition:</b> matrix.cpp:169</div></div>
+<div class="ttc" id="aclassMatrix_html_adb2e89d46016aa051f2f2a5af0ecc1e1"><div class="ttname"><a href="classMatrix.html#adb2e89d46016aa051f2f2a5af0ecc1e1">Matrix::shrink_to_fit</a></div><div class="ttdeci">void shrink_to_fit(char check)</div><div class="ttdef"><b>Definition:</b> matrix.cpp:219</div></div>
+<div class="ttc" id="aexceptions_8hpp_html"><div class="ttname"><a href="exceptions_8hpp.html">exceptions.hpp</a></div></div>
+<div class="ttc" id="amatrix_8hpp_html_a0040216179a291177fd043792e937636"><div class="ttname"><a href="matrix_8hpp.html#a0040216179a291177fd043792e937636">gorizontal</a></div><div class="ttdeci">const int gorizontal(2)</div><div class="ttdoc">Значение для клеток находящихся рядом с горизонтальными словами</div></div>
+<div class="ttc" id="amatrix_8hpp_html_a0ecbf15a59938d778b852cb14159c0af"><div class="ttname"><a href="matrix_8hpp.html#a0ecbf15a59938d778b852cb14159c0af">used</a></div><div class="ttdeci">const int used(5)</div><div class="ttdoc">Значения для клеток хранящие буквы</div></div>
+<div class="ttc" id="amatrix_8hpp_html_a9a4621b70b502fa9d60a460362cdf805"><div class="ttname"><a href="matrix_8hpp.html#a9a4621b70b502fa9d60a460362cdf805">vertical</a></div><div class="ttdeci">const int vertical(3)</div><div class="ttdoc">Значения для клеток находящихся рядом с вертикальными словами</div></div>
+<div class="ttc" id="amatrix_8hpp_html_ad3bc2febbf67ed672ac22dd10b0ca216"><div class="ttname"><a href="matrix_8hpp.html#ad3bc2febbf67ed672ac22dd10b0ca216">not_used</a></div><div class="ttdeci">const int not_used(1)</div><div class="ttdoc">Значение для неиспользуемых ячеек</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+</small></address>
+</body>
+</html>

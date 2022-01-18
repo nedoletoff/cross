@@ -1,0 +1,270 @@
+\hypertarget{classMatrix}{}\doxysection{Класс Matrix}
+\label{classMatrix}\index{Matrix@{Matrix}}
+
+
+Класс для графического вывода  
+
+
+
+
+{\ttfamily \#include $<$matrix.\+hpp$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMatrix_a385e5a1cbedacc3f568266ffc7d4f781}\label{classMatrix_a385e5a1cbedacc3f568266ffc7d4f781}} 
+{\bfseries Matrix} (size\+\_\+t h, size\+\_\+t w)
+\item 
+\mbox{\Hypertarget{classMatrix_a378b05786d085607dfe9d2c368a36aa1}\label{classMatrix_a378b05786d085607dfe9d2c368a36aa1}} 
+{\bfseries Matrix} (\mbox{\hyperlink{classMatrix}{Matrix}} \&a)
+\item 
+\mbox{\Hypertarget{classMatrix_ae8d865d3beaec2cce97db3dbcfa42646}\label{classMatrix_ae8d865d3beaec2cce97db3dbcfa42646}} 
+\mbox{\hyperlink{classMatrix}{Matrix}} \& {\bfseries operator=} (\mbox{\hyperlink{classMatrix}{Matrix}} \&a)
+\item 
+void \mbox{\hyperlink{classMatrix_a53ad6b79f8b1e302a2b34aacc5a194d1}{set\+\_\+cell}} (size\+\_\+t h, size\+\_\+t w, char value)
+\item 
+void \mbox{\hyperlink{classMatrix_a04dcd84dd4b5f4cc6c7f28de9a69b205}{set\+\_\+cell\+\_\+status}} (size\+\_\+t h, size\+\_\+t w, int value)
+\item 
+void \mbox{\hyperlink{classMatrix_a2b301b34d9d0acb59ca907e6516e2966}{multiply\+\_\+cell\+\_\+status}} (size\+\_\+t h, size\+\_\+t w, int value)
+\item 
+void \mbox{\hyperlink{classMatrix_aa2e23da3b78f24f50d7cb4abc26145e4}{divide\+\_\+cell\+\_\+status}} (size\+\_\+t h, size\+\_\+t w, int value)
+\item 
+char \mbox{\hyperlink{classMatrix_a00fedd043ffd872a71097bf51573b722}{get\+\_\+cell}} (size\+\_\+t h, size\+\_\+t w)
+\item 
+int \mbox{\hyperlink{classMatrix_a8eaa2d0ebf69555ae6570d4b809332c6}{get\+\_\+cell\+\_\+status}} (size\+\_\+t h, size\+\_\+t w)
+\item 
+size\+\_\+t \mbox{\hyperlink{classMatrix_a6926bcdb1e6ef09fc94b6ce7da04d807}{get\+\_\+height}} ()
+\item 
+size\+\_\+t \mbox{\hyperlink{classMatrix_a3e7c115f9678a20e3507e1b758784c13}{get\+\_\+width}} ()
+\item 
+size\+\_\+t \mbox{\hyperlink{classMatrix_ae87403ad6242d72d307779321c95bd11}{get\+\_\+unfilled}} (char check)
+\item 
+size\+\_\+t \mbox{\hyperlink{classMatrix_a44dd98dca0430a110209a88e52ae57b1}{get\+\_\+unfilled}} ()
+\item 
+void \mbox{\hyperlink{classMatrix_ac0aa1a3d2ef158e9f2bc3fa4648b7b1e}{change\+\_\+unfilled}} (char check, char value)
+\item 
+void \mbox{\hyperlink{classMatrix_a4c425bbe1f0cf8463d19c54d0326a53e}{increase\+\_\+size}} (size\+\_\+t h, size\+\_\+t w)
+\item 
+void \mbox{\hyperlink{classMatrix_adb2e89d46016aa051f2f2a5af0ecc1e1}{shrink\+\_\+to\+\_\+fit}} (char check)
+\item 
+double \mbox{\hyperlink{classMatrix_a8061a8ab2864d1eb889fd26cec74631f}{get\+\_\+coef}} ()
+\item 
+bool \mbox{\hyperlink{classMatrix_a5b4474a487c03021759869753be8de60}{legal}} (size\+\_\+t h, size\+\_\+t w)
+\end{DoxyCompactItemize}
+\doxysubsection*{Друзья}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMatrix_a02aa96d3c9f24b7254027a091f9f0990}\label{classMatrix_a02aa96d3c9f24b7254027a091f9f0990}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, \mbox{\hyperlink{classMatrix}{Matrix}} \&value)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс для графического вывода 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classMatrix_ac0aa1a3d2ef158e9f2bc3fa4648b7b1e}\label{classMatrix_ac0aa1a3d2ef158e9f2bc3fa4648b7b1e}} 
+\index{Matrix@{Matrix}!change\_unfilled@{change\_unfilled}}
+\index{change\_unfilled@{change\_unfilled}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{change\_unfilled()}{change\_unfilled()}}
+{\footnotesize\ttfamily void Matrix\+::change\+\_\+unfilled (\begin{DoxyParamCaption}\item[{char}]{check,  }\item[{char}]{value }\end{DoxyParamCaption})}
+
+Метод изменения значения незаполненных клеток
+
+принимает значение для незаполенной клетки и значение замены этой клетки 
+\begin{DoxyParams}{Аргументы}
+{\em check} & Заменяемое значение \\
+\hline
+{\em value} & Устанавливаемое значение \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMatrix_aa2e23da3b78f24f50d7cb4abc26145e4}\label{classMatrix_aa2e23da3b78f24f50d7cb4abc26145e4}} 
+\index{Matrix@{Matrix}!divide\_cell\_status@{divide\_cell\_status}}
+\index{divide\_cell\_status@{divide\_cell\_status}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{divide\_cell\_status()}{divide\_cell\_status()}}
+{\footnotesize\ttfamily void Matrix\+::divide\+\_\+cell\+\_\+status (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{h,  }\item[{size\+\_\+t}]{w,  }\item[{int}]{value }\end{DoxyParamCaption})}
+
+Метод деления значения клетки статуса 
+\begin{DoxyParams}{Аргументы}
+{\em h} & Координата высоты \\
+\hline
+{\em w} & Координата широты \\
+\hline
+{\em value} & Устанавливаемое значение \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMatrix_a00fedd043ffd872a71097bf51573b722}\label{classMatrix_a00fedd043ffd872a71097bf51573b722}} 
+\index{Matrix@{Matrix}!get\_cell@{get\_cell}}
+\index{get\_cell@{get\_cell}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{get\_cell()}{get\_cell()}}
+{\footnotesize\ttfamily char Matrix\+::get\+\_\+cell (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{h,  }\item[{size\+\_\+t}]{w }\end{DoxyParamCaption})}
+
+Метод возврата значения клетки 
+\begin{DoxyParams}{Аргументы}
+{\em h} & Координата высоты \\
+\hline
+{\em w} & Координата широты \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Возвращает буквенноу значение клетки 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a8eaa2d0ebf69555ae6570d4b809332c6}\label{classMatrix_a8eaa2d0ebf69555ae6570d4b809332c6}} 
+\index{Matrix@{Matrix}!get\_cell\_status@{get\_cell\_status}}
+\index{get\_cell\_status@{get\_cell\_status}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{get\_cell\_status()}{get\_cell\_status()}}
+{\footnotesize\ttfamily int Matrix\+::get\+\_\+cell\+\_\+status (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{h,  }\item[{size\+\_\+t}]{w }\end{DoxyParamCaption})}
+
+Метод возврата значения статуса клетки ~\newline
+ 
+\begin{DoxyParams}{Аргументы}
+{\em h} & Координата высоты \\
+\hline
+{\em w} & Координата широты \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Возращает целочисленное значение клетки 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a8061a8ab2864d1eb889fd26cec74631f}\label{classMatrix_a8061a8ab2864d1eb889fd26cec74631f}} 
+\index{Matrix@{Matrix}!get\_coef@{get\_coef}}
+\index{get\_coef@{get\_coef}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{get\_coef()}{get\_coef()}}
+{\footnotesize\ttfamily double Matrix\+::get\+\_\+coef (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Метод возврата коэфицента оптимальности матрицы \begin{DoxyReturn}{Возвращает}
+Возвращает коэффициент 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a6926bcdb1e6ef09fc94b6ce7da04d807}\label{classMatrix_a6926bcdb1e6ef09fc94b6ce7da04d807}} 
+\index{Matrix@{Matrix}!get\_height@{get\_height}}
+\index{get\_height@{get\_height}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{get\_height()}{get\_height()}}
+{\footnotesize\ttfamily size\+\_\+t Matrix\+::get\+\_\+height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Метод возврата высоты матрицы \begin{DoxyReturn}{Возвращает}
+Возвращает высоту 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a44dd98dca0430a110209a88e52ae57b1}\label{classMatrix_a44dd98dca0430a110209a88e52ae57b1}} 
+\index{Matrix@{Matrix}!get\_unfilled@{get\_unfilled}}
+\index{get\_unfilled@{get\_unfilled}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{get\_unfilled()}{get\_unfilled()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily size\+\_\+t Matrix\+::get\+\_\+unfilled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Метод возврата незаполненных клеток по статусу \begin{DoxyReturn}{Возвращает}
+Количество незаполненных клеток 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_ae87403ad6242d72d307779321c95bd11}\label{classMatrix_ae87403ad6242d72d307779321c95bd11}} 
+\index{Matrix@{Matrix}!get\_unfilled@{get\_unfilled}}
+\index{get\_unfilled@{get\_unfilled}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{get\_unfilled()}{get\_unfilled()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily size\+\_\+t Matrix\+::get\+\_\+unfilled (\begin{DoxyParamCaption}\item[{char}]{check }\end{DoxyParamCaption})}
+
+Метод возврата незаполненных клеток по значению 
+\begin{DoxyParams}{Аргументы}
+{\em check} & Значение принимаемое как ноль \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Количество незаполненных клеток 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a3e7c115f9678a20e3507e1b758784c13}\label{classMatrix_a3e7c115f9678a20e3507e1b758784c13}} 
+\index{Matrix@{Matrix}!get\_width@{get\_width}}
+\index{get\_width@{get\_width}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{get\_width()}{get\_width()}}
+{\footnotesize\ttfamily size\+\_\+t Matrix\+::get\+\_\+width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Метод возврата ширины матрицы \begin{DoxyReturn}{Возвращает}
+Возвращает ширину 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a4c425bbe1f0cf8463d19c54d0326a53e}\label{classMatrix_a4c425bbe1f0cf8463d19c54d0326a53e}} 
+\index{Matrix@{Matrix}!increase\_size@{increase\_size}}
+\index{increase\_size@{increase\_size}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{increase\_size()}{increase\_size()}}
+{\footnotesize\ttfamily void Matrix\+::increase\+\_\+size (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{h,  }\item[{size\+\_\+t}]{w }\end{DoxyParamCaption})}
+
+Метод увеличения размера ~\newline
+ 
+\begin{DoxyParams}{Аргументы}
+{\em h} & Значение высоты новой матрицы \\
+\hline
+{\em w} & Значение широты новой матрицы \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMatrix_a5b4474a487c03021759869753be8de60}\label{classMatrix_a5b4474a487c03021759869753be8de60}} 
+\index{Matrix@{Matrix}!legal@{legal}}
+\index{legal@{legal}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{legal()}{legal()}}
+{\footnotesize\ttfamily bool Matrix\+::legal (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{h,  }\item[{size\+\_\+t}]{w }\end{DoxyParamCaption})}
+
+Метод проверки возможности использования клетки 
+\begin{DoxyParams}{Аргументы}
+{\em h} & Координата высоты \\
+\hline
+{\em w} & Координата широты \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Можно ли использовать клетку 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMatrix_a2b301b34d9d0acb59ca907e6516e2966}\label{classMatrix_a2b301b34d9d0acb59ca907e6516e2966}} 
+\index{Matrix@{Matrix}!multiply\_cell\_status@{multiply\_cell\_status}}
+\index{multiply\_cell\_status@{multiply\_cell\_status}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{multiply\_cell\_status()}{multiply\_cell\_status()}}
+{\footnotesize\ttfamily void Matrix\+::multiply\+\_\+cell\+\_\+status (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{h,  }\item[{size\+\_\+t}]{w,  }\item[{int}]{value }\end{DoxyParamCaption})}
+
+Метод умножения значения клетки статуса 
+\begin{DoxyParams}{Аргументы}
+{\em h} & Координата высоты \\
+\hline
+{\em w} & Координата широты \\
+\hline
+{\em value} & Устанавливаемое значение \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMatrix_a53ad6b79f8b1e302a2b34aacc5a194d1}\label{classMatrix_a53ad6b79f8b1e302a2b34aacc5a194d1}} 
+\index{Matrix@{Matrix}!set\_cell@{set\_cell}}
+\index{set\_cell@{set\_cell}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{set\_cell()}{set\_cell()}}
+{\footnotesize\ttfamily void Matrix\+::set\+\_\+cell (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{h,  }\item[{size\+\_\+t}]{w,  }\item[{char}]{value }\end{DoxyParamCaption})}
+
+Метод установки значения клетки 
+\begin{DoxyParams}{Аргументы}
+{\em h} & Координата высоты \\
+\hline
+{\em w} & Координата широты \\
+\hline
+{\em value} & Устанавливаемое значение \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMatrix_a04dcd84dd4b5f4cc6c7f28de9a69b205}\label{classMatrix_a04dcd84dd4b5f4cc6c7f28de9a69b205}} 
+\index{Matrix@{Matrix}!set\_cell\_status@{set\_cell\_status}}
+\index{set\_cell\_status@{set\_cell\_status}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{set\_cell\_status()}{set\_cell\_status()}}
+{\footnotesize\ttfamily void Matrix\+::set\+\_\+cell\+\_\+status (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{h,  }\item[{size\+\_\+t}]{w,  }\item[{int}]{value }\end{DoxyParamCaption})}
+
+Метод установки значения статуса клетки 
+\begin{DoxyParams}{Аргументы}
+{\em h} & Координата высоты \\
+\hline
+{\em w} & Координата широты \\
+\hline
+{\em value} & Устанавливаемое значение \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMatrix_adb2e89d46016aa051f2f2a5af0ecc1e1}\label{classMatrix_adb2e89d46016aa051f2f2a5af0ecc1e1}} 
+\index{Matrix@{Matrix}!shrink\_to\_fit@{shrink\_to\_fit}}
+\index{shrink\_to\_fit@{shrink\_to\_fit}!Matrix@{Matrix}}
+\doxysubsubsection{\texorpdfstring{shrink\_to\_fit()}{shrink\_to\_fit()}}
+{\footnotesize\ttfamily void Matrix\+::shrink\+\_\+to\+\_\+fit (\begin{DoxyParamCaption}\item[{char}]{check }\end{DoxyParamCaption})}
+
+Метод приведения матрицы к оптимальному размеру 
+\begin{DoxyParams}{Аргументы}
+{\em check} & Значение принимаемое как ноль \\
+\hline
+\end{DoxyParams}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{matrix_8hpp}{matrix.\+hpp}}\item 
+matrix.\+cpp\end{DoxyCompactItemize}

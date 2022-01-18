@@ -1,9 +1,11 @@
 #pragma once
 
+/// \file
+
 #include <string>
 #include <iostream>
 
-class Exception    ///<Класс исключений
+class Exception    ///Класс исключений
 {
     private:
         std::string val;    ///<Текст исключения
