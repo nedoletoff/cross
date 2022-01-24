@@ -1,30 +1,37 @@
 #include "crisscross.hpp"
 #include <iostream>
 
-bool add_word_g(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)	
+bool check_word_g(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 {
 	std::string value = words.get_word(n);
 	size_t word_size = value.size();
-	bool check = true;
 
 	if (!(w + word_size < matrix.get_width()))
 		return false;
 
-	if (matrix.legal(h, w - 1) &&  
+	if (matrix.legal(h, w - 1) &&
 	matrix.get_cell_status(h, w - 1) % used == 0)
-			check = false;
+		return false;
 
-	if (matrix.legal(h, w + word_size) && 
+	if (matrix.legal(h, w + word_size) &&
 	matrix.get_cell_status(h, w + word_size) % ::used == 0)
-			check = false;
+		return false;
 
-	for (size_t i = 0; i < word_size && check; i++)
+	for (size_t i = 0; i < word_size; i++)
 		if (matrix.get_cell_status(h, w + i) %
 		::gorizontal == 0 || (matrix.get_cell_status(h, w + i) %
 		::used == 0 && matrix.get_cell(h, w + i) != value[i]))
-			check = false;
-	if (check)
+			return false;
+	return true;
+}
+
+bool add_word_g(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
+{
+	if (check_word_g(words, n, matrix, h, w))
 	{
+		std::string value = words.get_word(n);
+		size_t word_size = words.get_word(n).size();
+
 		for (size_t i = 0; i < word_size; i++)
 		{
 			matrix.set_cell(h, w + i, value[i]);
@@ -45,31 +52,37 @@ bool add_word_g(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 	return false;
 }
 
-bool add_word_v(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)	
+bool check_word_v(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 {
 	std::string value = words.get_word(n);
 	size_t word_size = value.size();
-	bool check = true;
 
 	if (!(h + word_size < matrix.get_height()))
 		return false;
 
-	if (matrix.legal(h - 1, w) && 
+	if (matrix.legal(h - 1, w) &&
 	matrix.get_cell_status(h - 1, w) % used == 0)
-		check = false;
+		return false;
 
-	if (matrix.legal(h + word_size + 1, w) && 
+	if (matrix.legal(h + word_size + 1, w) &&
 	matrix.get_cell_status(h + word_size, w) % used == 0)
-		check = false;
+		return false;
 
-	for (size_t i = 0; i < word_size && check; i++)
+	for (size_t i = 0; i < word_size; i++)
 		if (matrix.get_cell_status(h + i, w) % ::vertical == 0 ||
 		(matrix.get_cell_status(h + i, w) % ::used == 0 &&
 		matrix.get_cell(h + i, w) != value[i]))
+			return false;
+	return true;
+}
 
-			check = false;
-	if (check)
+bool add_word_v(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
+{
+	if (check_word_v(words, n, matrix, h, w))
 	{
+		std::string value = words.get_word(n);
+		size_t word_size = words.get_word(n).size();
+
 		for (size_t i = 0; i < word_size; i++)
 		{
 			matrix.set_cell(h + i, w, value[i]);
@@ -90,14 +103,14 @@ bool add_word_v(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 	return false;
 }
 
-bool add_word(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)	
+bool add_word(Words& words, size_t n, Matrix& matrix, size_t h, size_t w)
 {
 	if (add_word_g(words, n, matrix, h, w))
 			return true;
 	return add_word_v(words, n, matrix, h, w);
 }
 
-void delete_word_g(std::string value, Matrix& matrix, size_t h, size_t w)	
+void delete_word_g(std::string value, Matrix& matrix, size_t h, size_t w)
 {
 	size_t word_size = value.size();
 	if (w + word_size > matrix.get_width())
@@ -125,7 +138,7 @@ void delete_word_g(std::string value, Matrix& matrix, size_t h, size_t w)
 }
 
 
-void delete_word_v(std::string value, Matrix& matrix, size_t h, size_t w)	
+void delete_word_v(std::string value, Matrix& matrix, size_t h, size_t w)
 {
 	size_t word_size = value.size();
 
@@ -155,7 +168,7 @@ void delete_word_v(std::string value, Matrix& matrix, size_t h, size_t w)
 
 }
 
-bool delete_word(Words& words, size_t n, Matrix& matrix)	
+bool delete_word(Words& words, size_t n, Matrix& matrix)
 {
 	if (!words.get_word_status(n))
 		return false;
@@ -172,26 +185,51 @@ bool delete_word(Words& words, size_t n, Matrix& matrix)
 	return true;
 }
 
-bool add_word(Words& words, size_t n, Matrix& matrix)	
+bool check_word(Words& words, size_t n, Matrix& matrix, size_t h, size_t w, double& m_coef)
+{
+	size_t count = 0;
+
+	if (check_word_g(words, n, matrix, h, w))
+	{
+		for(size_t i = 0; i < words.get_word(n).size(); i++)
+			if (matrix.get_cell_status(h, w + i) == ::used)
+				count++;
+	}
+	else if (check_word_v(words, n, matrix, h, w))
+	{
+		for(size_t i = 0; i < words.get_word(n).size(); i++)
+			if (matrix.get_cell_status(h + i, w) == ::used)
+				count++;
+	}
+
+	if (count)
+		m_coef += double(count) / (::used * ::used);
+	
+	if (m_coef > matrix.get_coef())
+		return true;
+	return false;
+
+}
+
+bool add_word(Words& words, size_t n, Matrix& matrix)
 {
 	double m_coef = matrix.get_coef();
 	bool check = false;
 	size_t h, w;
+
+	if (m_coef < 0)
+		m_coef = 0;
 
 	if (words.get_word_status(n))
 		return false;
 
 	for (size_t i = 0; i < matrix.get_height(); i++)
 		for (size_t j = 0; j < matrix.get_width(); j++)
-			if (add_word(words, n, matrix, i, j))
+			if (check_word(words, n, matrix, i, j, m_coef))
 			{
-				if (m_coef < matrix.get_coef())
-				{
-					check = true;
-					h = i; w = j;
-					m_coef = matrix.get_coef();
-				}
-				delete_word(words, n, matrix);
+				check = true;
+				h = i; w = j;
+				m_coef = matrix.get_coef();
 			}
 	if (check)
 		return (add_word(words, n, matrix, h, w));
@@ -199,7 +237,7 @@ bool add_word(Words& words, size_t n, Matrix& matrix)
 }
 
 
-void cross(Words& words, Matrix& matrix, Matrix& res, std::list<size_t>& saved, std::list<size_t>& l)	
+void cross(Words& words, Matrix& matrix, Matrix& res, std::list<size_t>& saved, std::list<size_t>& l)
 {
 	for (size_t k = 0; k < words.get_words_numbers(); k++)
 		if (add_word(words, k, matrix))
@@ -220,7 +258,7 @@ void cross(Words& words, Matrix& matrix, Matrix& res, std::list<size_t>& saved, 
 }
 
 
-void crisscross(Words& words, Matrix& matrix)	
+void crisscross(Words& words, Matrix& matrix)
 {
 	Matrix res(matrix);
 	std::list<size_t> l, saved;
@@ -241,5 +279,3 @@ void crisscross(Words& words, Matrix& matrix)
 			std::cout << words.get_word(i) << " ";
 	std::cout << std::endl;
 }
-
-
